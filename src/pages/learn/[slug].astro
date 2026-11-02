@@ -44,7 +44,7 @@ const sources = a.data.sources.map((s) => { const [name, url] = s.split('|').map
   .prose :global(h2) { font-size: 1.45rem; margin-top: 2em; }
   .prose :global(p), .prose :global(li) { color: var(--ink-2); }
   .prose :global(table) { display: block; overflow-x: auto; margin: 1.2em 0; border: 1px solid var(--line); border-radius: var(--radius-sm); min-width: 0; }
-  .prose :global(> p:first-of-type), .prose :global(.updated + p) { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--brand); border-radius: var(--radius-sm); padding: 18px 22px; color: var(--ink); }
+  .prose :global(.updated + p) { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--brand); border-radius: var(--radius-sm); padding: 18px 22px; color: var(--ink); }
   .sources { margin-top: 3em; padding-top: 1.5em; border-top: 1px solid var(--line); font-size: .9rem; }
   .sources h2 { font-size: 1.1rem; }
 </style>
