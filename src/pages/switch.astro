@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { brand } from '../data/site';
+import { faqSchema, breadcrumb } from '../data/schema';
+
+const title = '換系統：從 Excel 或舊系統搬到 GoodLife';
+const description = '醫美診所換系統怎麼做才不會出事：導入四階段、資料搬家六步驟、上線當天的檢查與回退條件，舊系統確認無誤才停用。';
+const stages = [
+  { n: '1', t: '範圍確認', d: '盤點診所類型、現有軟體、各角色權限、要用的功能，以及舊資料有哪些。', gate: '雙方確認導入範圍與資料責任分工' },
+  { n: '2', t: '環境建置', d: '建立診所專屬的資料庫與網址、員工帳號與權限，先用虛構資料設定商品、療程、抽成規則。', gate: '每個角色都能登入，權限檢查通過' },
+  { n: '3', t: '資料試轉與驗收', d: '舊資料先試轉一次，逐欄對照、處理例外，再用核心情境逐項驗收。', gate: '筆數、金額抽樣核對通過，重大問題歸零' },
+  { n: '4', t: '上線與穩定', d: '教育訓練、正式切換、上線後觀察，問題有固定窗口處理。', gate: '雙方簽署驗收表後才正式切換' },
+];
+const steps = [
+  ['盤點舊系統', '格式、表格、欄位、匯出權限。Excel、紙本、舊系統匯出檔都可以。'],
+  ['資料分類', '一般營運資料和病歷等敏感資料分開處理。'],
+  ['欄位對照', '格式、空值、重複客戶、歷史紀錄怎麼對應。'],
+  ['安全試轉', '先用虛構資料測試流程，再依授權範圍轉入真實資料。'],
+  ['抽樣核對', '客戶數、剩餘堂數、儲值金餘額、金額逐項抽查，列出異常清單。'],
+  ['切換與回退', '先備份，約好誰拍板、多久內可以回到舊做法。'],
+];
+const smoke = ['登入與權限', '新增、查詢預約', '報到到結帳走完一次', '收款與報表核對', '稽核紀錄有留下'];
+const faqs = [
+  { q: '換系統期間診所要停業嗎？', a: '不用。舊系統或 Excel 先照常使用，新系統完成資料試轉與驗收後才切換。切換前會約好回退條件，萬一核心資料對不上，可以先回到舊做法。' },
+  { q: '舊資料一定都搬得過來嗎？', a: '不一定每個欄位都能直接搬。我們會先盤點格式、試轉一次、逐項核對，最優先確保客戶資料、剩餘套票堂數與儲值金餘額正確，其他資料依情況整理。' },
+  { q: '導入要多久？', a: '依舊資料的數量與格式而定。第一次會談時先看你的資料，再估算每個階段需要的天數。' },
+  { q: '員工要上課嗎？', a: '要。上線前依角色安排教育訓練，櫃台、諮詢師、會計各自學自己的畫面，不需要每個人學全部功能。' },
+];
+---
+<Base title={title} description={description} jsonld={[faqSchema(faqs), breadcrumb([{ name: '換系統', path: '/switch' }])]}>
+  <header class="page-head">
+    <div class="wrap" style="max-width:860px">
+      <div class="eyebrow">換系統</div>
+      <h1>{title}</h1>
+      <p class="updated">更新：{brand.updated}</p>
+      <p class="answer">醫美診所換到 GoodLife 分四個階段：<strong>範圍確認、環境建置、資料試轉與驗收、上線與穩定</strong>。舊資料先試轉、核對無誤才切換，舊系統在切換前照常使用，診所不需要停業。</p>
+    </div>
+  </header>
+
+  <section class="section tight">
+    <div class="wrap" style="max-width:860px">
+      <h2>導入四階段</h2>
+      <ol class="stages">
+        {stages.map((s) => (
+          <li class="card">
+            <span class="num">{s.n}</span>
+            <div>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+              <p class="gate"><strong>通過條件：</strong>{s.gate}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap" style="max-width:860px">
+      <h2>資料搬家六步驟</h2>
+      <p class="lead">最重要的是客戶資料、剩餘套票堂數和儲值金餘額。這三樣錯了，客人會直接感受到。</p>
+      <div class="grid c2">
+        {steps.map(([t, d], i) => <div class="card"><span class="tag">步驟 {i + 1}</span><h3 style="margin-top:10px">{t}</h3><p>{d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap" style="max-width:860px">
+      <h2>上線當天</h2>
+      <p class="lead">切換後立刻走一遍五項檢查，全部通過才算上線。</p>
+      <ol class="smoke">{smoke.map((s) => <li>{s}</li>)}</ol>
+      <div class="answer" style="margin-top:24px">
+        <strong>什麼情況要立刻回退：</strong>個資可能外洩、核心資料對不上又找不到原因、系統長時間無法使用，或無法確認備份可以還原。
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap" style="max-width:860px">
+      <h2>常見問答</h2>
+      <Faq items={faqs} />
+    </div>
+  </section>
+  <Cta title="先看看你的舊資料能怎麼搬" body="預約展示時可以帶一份舊資料的欄位範例（不用帶真實客人資料），我們先幫你評估。" />
+</Base>
+<style>
+  .stages { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .stages li { display: flex; gap: 18px; align-items: flex-start; }
+  .stages .num { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: var(--surface); background: var(--brand); }
+  .stages h3 { margin-bottom: 4px; }
+  .stages p { margin: 0; }
+  .stages .gate { margin-top: 8px !important; font-size: .92rem !important; color: var(--teal-ink) !important; }
+  .smoke { padding-left: 1.3em; display: grid; gap: 6px; color: var(--ink-2); }
+</style>
