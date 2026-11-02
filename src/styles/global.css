@@ -1,5 +1,6 @@
 /* GoodLife 顧德萊 設計 token：依品牌識別規範 v1.0（深藍 #0B2B57、亮藍 #168BFF、湖水藍 #19C7BE、關懷綠 #76D54E）
-   按鈕與文字用加深的藍 #0F6FD6，白字對比才夠；湖水藍、綠只當點綴，不放白底文字 */
+   按鈕與文字用加深的藍 #0F6FD6，白字對比才夠；湖水藍、綠只當點綴，不放白底文字
+   只有淺色版（業主 2026-11-02 決定），不跟裝置的深色模式 */
 :root {
   --bg: #F4F8FC; --bg-2: #EAF2FA; --surface: #FFFFFF;
   --ink: #142238; --ink-2: #3D4B5F; --ink-3: #6F7B8C; --heading: #0B2B57;
@@ -15,20 +16,6 @@
   --mono: 'Inter', ui-monospace, monospace;
   --wrap: 1120px;
   color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #08142A; --bg-2: #0C1B34; --surface: #10223F; --ink: #E6EDF7; --ink-2: #B4C1D4; --ink-3: #8593A8; --heading: #F2F6FC;
-    --line: #1E3354; --brand: #5AAEFF; --brand-deep: #8CC6FF; --brand-soft: #132C50; --brand-glow: rgba(90, 174, 255, .2);
-    --teal: #3FD8CF; --teal-ink: #5FE0D8; --teal-soft: #0F2E3A;
-    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -12px rgba(0,0,0,.6); color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #08142A; --bg-2: #0C1B34; --surface: #10223F; --ink: #E6EDF7; --ink-2: #B4C1D4; --ink-3: #8593A8; --heading: #F2F6FC;
-    --line: #1E3354; --brand: #5AAEFF; --brand-deep: #8CC6FF; --brand-soft: #132C50; --brand-glow: rgba(90, 174, 255, .2);
-    --teal: #3FD8CF; --teal-ink: #5FE0D8; --teal-soft: #0F2E3A;
-    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -12px rgba(0,0,0,.6); color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -58,8 +45,6 @@ p { margin: 0 0 1em; }
 /* 按鈕 */
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 1rem; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s; font-family: inherit; }
 .btn-primary { background: var(--brand); color: #fff; box-shadow: 0 8px 24px -8px var(--brand-glow); }
-:root[data-theme="dark"] .btn-primary { color: #08142A; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { color: #08142A; } }
 .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 28px -8px var(--brand-glow); }
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--brand); color: var(--brand-deep); }
