@@ -31,7 +31,15 @@ export default async function handler(req, res) {
     headers: { Authorization: `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({ from: DEMO_FROM_EMAIL, to: [DEMO_TO_EMAIL], subject: `預約展示：${data.clinic}（${data.name}）`, html }),
   });
-  if (!r.ok) return res.status(502).json({ ok: false, error: 'mail-failed' });
+  if (!r.ok) {
+    // Resend 的錯誤訊息只記在 Vercel 的 log（看得出是金鑰錯、還是收件人不被允許），不回給瀏覽器
+    const t = (await r.text()).slice(0, 300);
+    console.error('resend', r.status, t);
+    // 只回錯誤類別，方便排查設定：金鑰錯／收件人不被允許（測試寄件人只能寄給 Resend 帳號本人）／寄件人網域沒驗證
+    const kind = /api key/i.test(t) ? 'key-invalid' : /own email|testing emails/i.test(t) ? 'recipient-not-allowed'
+      : /domain|from/i.test(t) ? 'sender-not-verified' : 'mail-failed-' + r.status;
+    return res.status(502).json({ ok: false, error: kind });
+  }
   return res.status(200).json({ ok: true });
 }
 
