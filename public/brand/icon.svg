@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-label="GoodLife 圖標"><defs>
+<linearGradient id="blue-grad" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0" stop-color="#23B7FF"/><stop offset="0.48" stop-color="#137ED9"/><stop offset="1" stop-color="#0650B6"/></linearGradient>
+<linearGradient id="teal-grad" x1="0" y1="0" x2="0.85" y2="1"><stop offset="0" stop-color="#068E9B"/><stop offset="0.55" stop-color="#16BDB3"/><stop offset="1" stop-color="#52E0AA"/></linearGradient>
+<linearGradient id="cross-grad" x1="0" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#A0E552"/><stop offset="1" stop-color="#43BB47"/></linearGradient>
+</defs><g transform="translate(-166 -235)">
+ <path d="M737,309 L532,309 L485,316 L434,332 L375,362 L327,398 L278,450 L241,508 L210,584 L200,635 L198,720 L207,797 L230,862 L262,914 L305,962 L365,1005 L408,1024 L454,1036 L491,1040 L568,1039 L533,1023 L512,1008 L494,989 L478,963 L465,917 L465,851 L419,811 L399,782 L386,753 L377,709 L380,629 L392,592 L409,562 L445,522 L472,502 L519,483 L586,481 L623,474 L648,463 L679,441 L700,418 L722,381 L744,320 L743,313 Z" fill="url(#blue-grad)" fill-rule="evenodd"/>
+ <path d="M497,611 L476,646 L467,679 L466,917 L483,971 L501,996 L528,1019 L551,1031 L587,1040 L814,1040 L848,1036 L891,1023 L931,1001 L977,960 L1000,929 L1019,892 L1032,846 L1036,812 L1032,745 L1021,704 L998,658 L979,633 L936,596 L896,576 L854,565 L723,563 L714,571 L715,722 L733,727 L818,727 L844,734 L866,747 L892,775 L906,806 L910,824 L910,867 L903,872 L868,865 L667,865 L660,862 L652,848 L650,567 L643,563 L566,567 L532,581 Z" fill="url(#teal-grad)" fill-rule="evenodd"/>
+ <path d="M850 289 H890 Q910 289 910 309 V361 H962 Q982 361 982 381 V432 Q982 452 962 452 H910 V503 Q910 523 890 523 H850 Q830 523 830 503 V452 H769 Q749 452 749 432 V381 Q749 361 769 361 H830 V309 Q830 289 850 289 Z" fill="url(#cross-grad)"/>
+</g></svg>

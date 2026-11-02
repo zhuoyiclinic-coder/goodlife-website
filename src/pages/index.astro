@@ -150,7 +150,7 @@ const pains = [
         <div class="card reveal"><h3>獨立資料庫</h3><p>每家診所一套自己的資料庫，不和其他診所混放。</p></div>
         <div class="card reveal"><h3>角色權限</h3><p>每個角色能用哪些功能，可以逐項設定。</p></div>
         <div class="card reveal"><h3>稽核紀錄</h3><p>退費、改價、改金額等重要操作，都留下是誰在何時做的。</p></div>
-        <div class="card reveal"><h3>每日備份</h3><p>資料每天自動備份，連線全程加密。</p></div>
+        <div class="card reveal"><h3>加密連線</h3><p>瀏覽器到系統全程 HTTPS 加密，資料庫儲存也加密。</p></div>
       </div>
       <p style="margin-top:24px"><a href="/security">看資安做法 →</a></p>
     </div>
@@ -184,12 +184,13 @@ const pains = [
 
 <style>
   .hero { position: relative; padding: 96px 0 40px; overflow: hidden; }
-  .glow { position: absolute; inset: -30% -10% auto; height: 120%; background: radial-gradient(40% 50% at 30% 30%, var(--brand-glow), transparent 70%), radial-gradient(35% 45% at 75% 20%, rgba(192, 138, 78, .14), transparent 70%); filter: blur(20px); animation: drift 22s ease-in-out infinite alternate; pointer-events: none; }
+  .glow { position: absolute; inset: -30% -10% auto; height: 120%; background: radial-gradient(40% 50% at 30% 30%, var(--brand-glow), transparent 70%), radial-gradient(35% 45% at 75% 20%, rgba(25, 199, 190, .16), transparent 70%); filter: blur(20px); animation: drift 22s ease-in-out infinite alternate; pointer-events: none; }
   @keyframes drift { to { transform: translate3d(4%, 6%, 0) scale(1.08); } }
   .hero-inner { position: relative; text-align: center; }
+  .hero-inner .eyebrow::before { margin: 0 auto 12px; }
   .hero-title { max-width: 16em; margin: 0 auto 20px; }
   .hero-title .line { display: block; }
-  .hero-title em { font-style: normal; color: var(--brand); }
+  .hero-title em { font-style: normal; color: var(--brand); background: linear-gradient(90deg, var(--brand), var(--teal-ink)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
   .hero-lead { margin: 0 auto 28px; }
   .hero-cta { justify-content: center; }
   .hero-note { margin-top: 20px; font-size: .9rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; }
@@ -216,7 +217,8 @@ const pains = [
   .flow-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
   .step { display: flex; gap: 16px; align-items: flex-start; padding: 22px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); opacity: .45; transform: scale(.98); transition: opacity .5s, transform .5s, border-color .5s, box-shadow .5s; }
   .step.lit { opacity: 1; transform: none; border-color: var(--brand); box-shadow: 0 10px 30px -14px var(--brand-glow); }
-  .step .num { color: var(--brand); font-size: .9rem; padding-top: 3px; }
+  .step .num { color: var(--brand); font-size: .9rem; font-weight: 700; padding-top: 3px; }
+  .step.lit .num { color: var(--teal-ink); }
   .step h3 { margin-bottom: 4px; }
   .step p { margin: 0; color: var(--ink-2); font-size: .97rem; }
   @media (min-width: 900px) { .flow-steps { padding: 18vh 0 12vh; gap: 10vh; } }
@@ -231,7 +233,7 @@ const pains = [
   .proof { display: grid; gap: 32px; align-items: center; }
   @media (min-width: 900px) { .proof { grid-template-columns: 3fr 2fr; } }
   .quote { margin: 0; padding: 32px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
-  .quote p { font-family: var(--serif); font-size: 1.35rem; line-height: 1.6; color: var(--ink); }
+  .quote p { font-size: 1.3rem; font-weight: 700; line-height: 1.6; color: var(--heading); }
 
   .price-teaser { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; padding: 40px; border-radius: 28px; border: 1px solid var(--line); background: var(--surface); }
   .price-teaser h2 { margin-bottom: .3em; }

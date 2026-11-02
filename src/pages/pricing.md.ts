@@ -11,13 +11,15 @@ export const GET: APIRoute = () => {
 ${pricing.published ? '' : '- 狀態：各方案金額即將公布，現在可預約展示取得報價：' + brand.url + '/demo\n'}
 ${pricing.plans.map((p) => `## ${p.name}${p.popular ? '（推薦）' : ''}
 
-- 價格：${p.price ? 'NT$ ' + p.price + '／月' : '即將公布'}
+- 月費：${pricing.published && p.price ? 'NT$ ' + p.price.toLocaleString('en-US') + (p.from ? ' 起' : '') + '／月（未稅）' : '即將公布'}
+- 導入費：${pricing.published && p.setup ? 'NT$ ' + p.setup.toLocaleString('en-US') + (p.from ? ' 起' : '') + '（一次）' : '依資料量報價'}
 - 適合：${p.for}
 - 包含：${p.items.join('、')}`).join('\n\n')}
 
 ## 其他費用
 
-- 導入與資料搬家：一次性，依舊資料數量與格式報價
+- 導入與資料搬家：一次性，金額見各方案；舊資料特別多或格式特殊另外報價
+- ${pricing.pilot}
 - LINE 官方帳號：診所自行向 LINE 申辦付費
 - 電子發票加值服務：診所自行向藍新或綠界申辦付費
 

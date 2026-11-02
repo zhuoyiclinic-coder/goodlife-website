@@ -32,7 +32,8 @@ export const softwareSchema = () => {
   // 金額公布後才加 offers，避免寫出不合規格的價格
   if (pricing.published) {
     s.offers = pricing.plans.filter((p) => p.price).map((p) => ({
-      '@type': 'Offer', name: p.name, price: p.price, priceCurrency: 'TWD', url: brand.url + '/pricing',
+      '@type': 'Offer', name: p.name + '方案', price: p.price, priceCurrency: 'TWD', url: brand.url + '/pricing',
+      priceSpecification: { '@type': 'UnitPriceSpecification', price: p.price, priceCurrency: 'TWD', unitCode: 'MON', valueAddedTaxIncluded: false },
     }));
   }
   return s;

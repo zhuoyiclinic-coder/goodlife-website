@@ -6,7 +6,7 @@ import { brand, faqs } from '../data/site';
 import { faqSchema, breadcrumb } from '../data/schema';
 
 const title = '資安與個資保護';
-const description = 'GoodLife 顧德萊怎麼保護病患個資：每家診所獨立資料庫、連線加密、角色權限逐項設定、重要操作留稽核紀錄、每日自動備份。';
+const description = 'GoodLife 顧德萊怎麼保護病患個資：每家診所獨立資料庫、連線加密、角色權限逐項設定、重要操作留稽核紀錄。';
 const pageFaqs = faqs.filter((f) => /個資/.test(f.q));
 const items = [
   { t: '每家診所獨立資料庫', d: '每家診所使用自己的資料庫與網址，資料不和其他診所放在一起，也不會因為別家的問題受影響。' },
@@ -14,7 +14,6 @@ const items = [
   { t: '角色權限逐項設定', d: '老闆、店長、醫師、護理師、諮詢師、美容師、櫃台、會計各有權限。每個功能哪些角色能用，可以在權限表逐項打開或關掉。' },
   { t: '資料庫層級的存取控制', d: '權限不只是畫面上把按鈕藏起來。資料庫本身會檢查登入者的角色，不該看到的資料直接讀不到。' },
   { t: '重要操作留稽核紀錄', d: '退費、改價、改金額、作廢等操作，都記下是誰、什麼時間、改了什麼，紀錄只能新增、不能修改。' },
-  { t: '每日自動備份', d: '資料每天自動備份，發生意外時可以還原。' },
 ];
 ---
 <Base title={title} description={description} jsonld={[faqSchema(pageFaqs), breadcrumb([{ name: title, path: '/security' }])]}>
@@ -23,7 +22,7 @@ const items = [
       <div class="eyebrow">資安與個資</div>
       <h1>病患資料，只屬於你的診所</h1>
       <p class="updated">更新：{brand.updated}</p>
-      <p class="answer">GoodLife 顧德萊讓每家診所使用<strong>獨立的資料庫</strong>，連線全程加密，每個角色只能存取工作需要的資料，重要操作都留下無法修改的稽核紀錄，資料每天自動備份。</p>
+      <p class="answer">GoodLife 顧德萊讓每家診所使用<strong>獨立的資料庫</strong>，連線全程加密，每個角色只能存取工作需要的資料，重要操作都留下無法修改的稽核紀錄。</p>
     </div>
   </header>
   <section class="section tight">

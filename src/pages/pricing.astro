@@ -16,7 +16,7 @@ const fmt = (n: number) => 'NT$ ' + n.toLocaleString('zh-TW');
       <div class="eyebrow">價格</div>
       <h1>按診所計價，不按人頭</h1>
       <p class="lead">{pricing.unit}。櫃台、諮詢師、美容師再多，也不加價。</p>
-      {!pricing.published && <p class="notice">各方案金額即將公布。現在預約展示，可以先拿到報價。</p>}
+      {!pricing.published ? <p class="notice">各方案金額即將公布。現在預約展示，可以先拿到報價。</p> : <p class="notice">{pricing.pilot}</p>}
     </div>
   </header>
 
@@ -28,7 +28,8 @@ const fmt = (n: number) => 'NT$ ' + n.toLocaleString('zh-TW');
             {p.popular && <span class="tag">推薦</span>}
             <h2 class="plan-name">{p.name}</h2>
             <p class="muted">{p.for}</p>
-            <p class="price">{p.price ? <>{fmt(p.price)}<small>／月</small></> : <span class="muted">金額即將公布</span>}</p>
+            <p class="price">{pricing.published && p.price ? <>{fmt(p.price)}<small>／月{p.from ? '起' : ''}</small></> : <span class="muted">金額即將公布</span>}</p>
+            {pricing.published && p.setup && <p class="setup">導入費 {fmt(p.setup)}{p.from ? ' 起' : ''}（一次）</p>}
             <ul>{p.items.map((it) => <li>{it}</li>)}</ul>
             <a class={'btn ' + (p.popular ? 'btn-primary' : 'btn-ghost')} href="/demo">預約展示</a>
           </article>
@@ -47,7 +48,7 @@ const fmt = (n: number) => 'NT$ ' + n.toLocaleString('zh-TW');
           <thead><tr><th scope="col">費用</th><th scope="col">誰收</th><th scope="col">怎麼算</th></tr></thead>
           <tbody>
             <tr><th scope="row">系統月費</th><td>GoodLife</td><td>每家診所每月，依方案</td></tr>
-            <tr><th scope="row">導入與資料搬家</th><td>GoodLife</td><td>一次性，依舊資料的數量與格式報價</td></tr>
+            <tr><th scope="row">導入與資料搬家</th><td>GoodLife</td><td>一次性，依方案（見上方），舊資料特別多或格式特殊另外報價</td></tr>
             <tr><th scope="row">LINE 官方帳號</th><td>LINE</td><td>診所自己的帳號方案，依訊息量</td></tr>
             <tr><th scope="row">電子發票加值服務</th><td>藍新或綠界</td><td>診所自己申辦，年費或張數費</td></tr>
           </tbody>
@@ -74,6 +75,8 @@ const fmt = (n: number) => 'NT$ ' + n.toLocaleString('zh-TW');
   .price { font-size: 1.7rem; font-weight: 700; margin: 12px 0; }
   .price small { font-size: .9rem; font-weight: 500; color: var(--ink-3); }
   .price .muted { font-size: 1.05rem; font-weight: 500; }
+  .price { color: var(--heading); margin-bottom: 0; }
+  .setup { color: var(--ink-3); font-size: .92rem; margin: 2px 0 16px; }
   .plan ul { padding-left: 1.2em; margin: 0 0 20px; color: var(--ink-2); flex: 1; }
   .plan .btn { justify-content: center; }
   .notes { padding-left: 1.2em; color: var(--ink-2); display: grid; gap: 8px; }

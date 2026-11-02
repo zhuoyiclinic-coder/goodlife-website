@@ -30,7 +30,8 @@ ${roles.map((r) => `- ${r.title}：${r.body}`).join('\n')}
 
 - ${pricing.unit}
 ${pricing.notes.map((n) => `- ${n}`).join('\n')}
-${pricing.plans.map((p) => `- ${p.name}方案（${p.for}）：${p.price ? 'NT$ ' + p.price + '／月' : '金額即將公布'}；包含 ${p.items.join('、')}`).join('\n')}
+- ${pricing.pilot}
+${pricing.plans.map((p) => `- ${p.name}方案（${p.for}）：${pricing.published && p.price ? '月費 NT$ ' + p.price.toLocaleString('en-US') + (p.from ? ' 起' : '') + '（未稅），導入費 NT$ ' + (p.setup || 0).toLocaleString('en-US') + (p.from ? ' 起' : '') : '金額即將公布'}；包含 ${p.items.join('、')}`).join('\n')}
 
 ## 資安與個資
 
@@ -38,7 +39,6 @@ ${pricing.plans.map((p) => `- ${p.name}方案（${p.for}）：${p.price ? 'NT$ '
 - 連線全程 HTTPS 加密，資料庫儲存加密
 - 角色權限可逐項設定，資料庫層級檢查存取權
 - 退費、改價、改金額、作廢等重要操作留下稽核紀錄
-- 資料每日自動備份
 
 ## 客戶故事
 

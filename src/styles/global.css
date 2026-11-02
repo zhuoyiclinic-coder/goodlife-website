@@ -1,37 +1,34 @@
-/* GoodLife 顧德萊 設計 token：青瓷綠（和示範診所的主色一致） */
+/* GoodLife 顧德萊 設計 token：依品牌識別規範 v1.0（深藍 #0B2B57、亮藍 #168BFF、湖水藍 #19C7BE、關懷綠 #76D54E）
+   按鈕與文字用加深的藍 #0F6FD6，白字對比才夠；湖水藍、綠只當點綴，不放白底文字 */
 :root {
-  --bg: #F7F6F2;
-  --bg-2: #EFEDE6;
-  --surface: #FFFFFF;
-  --ink: #1C2321;
-  --ink-2: #4A5552;
-  --ink-3: #7A8582;
-  --line: #E1DED5;
-  --brand: #3E7C78;
-  --brand-deep: #2E5E5B;
-  --brand-soft: #E6F0EE;
-  --brand-glow: rgba(62, 124, 120, .18);
-  --accent: #C08A4E;
-  --radius: 18px;
-  --radius-sm: 12px;
-  --shadow: 0 1px 2px rgba(28, 35, 33, .05), 0 12px 32px -12px rgba(28, 35, 33, .18);
-  --serif: 'Noto Serif TC', 'Songti TC', serif;
-  --sans: 'Noto Sans TC', -apple-system, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --bg: #F4F8FC; --bg-2: #EAF2FA; --surface: #FFFFFF;
+  --ink: #142238; --ink-2: #3D4B5F; --ink-3: #6F7B8C; --heading: #0B2B57;
+  --line: #DDE8F2;
+  --brand: #0F6FD6; --brand-deep: #0B57B0; --brand-soft: #E9F4FF; --brand-glow: rgba(22, 139, 255, .22);
+  --teal: #19C7BE; --teal-ink: #0B8C86; --teal-soft: #E4F9F7; --green: #76D54E;
+  --shadow: 0 1px 2px rgba(11, 43, 87, .05), 0 12px 32px -12px rgba(11, 43, 87, .18);
+  --grad: linear-gradient(90deg, #168BFF, #19C7BE 60%, #76D54E);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --serif: 'Inter', 'Noto Sans TC', -apple-system, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --sans: 'Inter', 'Noto Sans TC', -apple-system, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --mono: 'Inter', ui-monospace, monospace;
   --wrap: 1120px;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #111615; --bg-2: #171D1C; --surface: #1B2221; --ink: #ECEFEE; --ink-2: #B8C2BF; --ink-3: #85918E;
-    --line: #2A3331; --brand: #7FBDB7; --brand-deep: #9BCFCA; --brand-soft: #1E2D2B; --brand-glow: rgba(127, 189, 183, .16);
+    --bg: #08142A; --bg-2: #0C1B34; --surface: #10223F; --ink: #E6EDF7; --ink-2: #B4C1D4; --ink-3: #8593A8; --heading: #F2F6FC;
+    --line: #1E3354; --brand: #5AAEFF; --brand-deep: #8CC6FF; --brand-soft: #132C50; --brand-glow: rgba(90, 174, 255, .2);
+    --teal: #3FD8CF; --teal-ink: #5FE0D8; --teal-soft: #0F2E3A;
     --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -12px rgba(0,0,0,.6); color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #111615; --bg-2: #171D1C; --surface: #1B2221; --ink: #ECEFEE; --ink-2: #B8C2BF; --ink-3: #85918E;
-  --line: #2A3331; --brand: #7FBDB7; --brand-deep: #9BCFCA; --brand-soft: #1E2D2B; --brand-glow: rgba(127, 189, 183, .16);
-  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -12px rgba(0,0,0,.6); color-scheme: dark;
+  --bg: #08142A; --bg-2: #0C1B34; --surface: #10223F; --ink: #E6EDF7; --ink-2: #B4C1D4; --ink-3: #8593A8; --heading: #F2F6FC;
+    --line: #1E3354; --brand: #5AAEFF; --brand-deep: #8CC6FF; --brand-soft: #132C50; --brand-glow: rgba(90, 174, 255, .2);
+    --teal: #3FD8CF; --teal-ink: #5FE0D8; --teal-soft: #0F2E3A;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -12px rgba(0,0,0,.6); color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -40,7 +37,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--s
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--brand-deep); text-underline-offset: 3px; }
 h1, h2, h3 { line-height: 1.3; margin: 0 0 .5em; letter-spacing: .02em; }
-h1, h2 { font-family: var(--serif); font-weight: 600; }
+h1, h2 { font-family: var(--serif); font-weight: 700; color: var(--heading); letter-spacing: .01em; }
 h1 { font-size: clamp(1.75rem, 5.2vw, 3.6rem); }
 h2 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); }
 h3 { font-size: 1.15rem; font-weight: 600; }
@@ -50,7 +47,9 @@ p { margin: 0 0 1em; }
 .section { padding: 88px 0; }
 .section.tight { padding: 56px 0; }
 .section.alt { background: var(--bg-2); }
-.eyebrow { font-family: var(--mono); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); margin-bottom: 12px; }
+.eyebrow { font-size: .85rem; font-weight: 700; letter-spacing: .12em; color: var(--brand); margin-bottom: 14px; }
+.eyebrow::before { content: ''; display: block; width: 44px; height: 5px; border-radius: 99px; background: var(--grad); margin-bottom: 12px; }
+.center .eyebrow::before, .center.eyebrow::before { margin-left: auto; margin-right: auto; }
 .lead { font-size: 1.12rem; color: var(--ink-2); max-width: 40em; }
 .muted { color: var(--ink-3); }
 .center { text-align: center; }
@@ -59,8 +58,8 @@ p { margin: 0 0 1em; }
 /* 按鈕 */
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 1rem; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s; font-family: inherit; }
 .btn-primary { background: var(--brand); color: #fff; box-shadow: 0 8px 24px -8px var(--brand-glow); }
-:root[data-theme="dark"] .btn-primary { color: #0F1514; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { color: #0F1514; } }
+:root[data-theme="dark"] .btn-primary { color: #08142A; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { color: #08142A; } }
 .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 28px -8px var(--brand-glow); }
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--brand); color: var(--brand-deep); }
@@ -78,8 +77,9 @@ p { margin: 0 0 1em; }
 /* 頁首導覽：毛玻璃膠囊 */
 .nav { position: sticky; top: 12px; z-index: 50; margin: 12px auto 0; max-width: calc(var(--wrap) - 32px); width: calc(100% - 24px); display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 8px 8px 20px; border-radius: 999px; background: color-mix(in srgb, var(--surface) 72%, transparent); border: 1px solid color-mix(in srgb, var(--line) 80%, transparent); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); box-shadow: 0 6px 24px -14px rgba(0,0,0,.25); }
 .logo { display: flex; align-items: baseline; gap: 8px; text-decoration: none; color: var(--ink); font-weight: 700; white-space: nowrap; }
-.logo b { font-family: var(--serif); font-size: 1.15rem; letter-spacing: .02em; }
-.logo b span { color: var(--brand); }
+.logo { align-items: center; }
+.logo img { width: 30px; height: 30px; }
+.logo b { font-size: 1.2rem; letter-spacing: -.01em; color: var(--heading); }
 .logo small { font-size: .82rem; color: var(--ink-3); font-weight: 500; }
 .nav-links { display: none; gap: 4px; }
 .nav-links a { padding: 8px 14px; border-radius: 999px; text-decoration: none; color: var(--ink-2); font-size: .95rem; }
