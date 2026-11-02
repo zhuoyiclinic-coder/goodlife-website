@@ -1,0 +1,69 @@
+---
+// 功能頁、角色頁、診所類型頁共用的版型
+import Base from '../layouts/Base.astro';
+import Faq from './Faq.astro';
+import Cta from './Cta.astro';
+import { brand } from '../data/site';
+import { faqSchema, breadcrumb } from '../data/schema';
+import type { Detail } from '../data/details';
+
+interface Props {
+  d: Detail;
+  section: { name: string; path: string };
+  siblings: { slug: string; short: string }[];
+  articleTitle?: string;
+}
+const { d, section, siblings, articleTitle } = Astro.props;
+const path = `${section.path}/${d.slug}`;
+const jsonld = [breadcrumb([section, { name: d.short, path }]), ...(d.faqs.length ? [faqSchema(d.faqs)] : [])];
+---
+<Base title={d.title} description={d.description} jsonld={jsonld}>
+  <header class="page-head">
+    <div class="wrap" style="max-width:860px">
+      <nav class="crumb" aria-label="麵包屑"><a href="/">首頁</a> / <a href={section.path}>{section.name}</a> / {d.short}</nav>
+      <div class="eyebrow">{section.name}</div>
+      <h1>{d.title}</h1>
+      <p class="updated">更新：{brand.updated}</p>
+      <p class="answer">{d.answer}</p>
+    </div>
+  </header>
+
+  {d.points.length > 0 && (
+    <section class="section tight">
+      <div class="wrap" style="max-width:860px">
+        <div class="grid c2">
+          {d.points.map((p) => <div class="card"><h2 class="h3">{p.t}</h2><p>{p.d}</p></div>)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <slot />
+
+  {d.faqs.length > 0 && (
+    <section class="section tight">
+      <div class="wrap" style="max-width:860px">
+        <h2>常見問答</h2>
+        <Faq items={d.faqs} />
+      </div>
+    </section>
+  )}
+
+  <section class="section tight">
+    <div class="wrap" style="max-width:860px">
+      {d.article && articleTitle && <p class="more">延伸閱讀：<a href={`/learn/${d.article}`}>{articleTitle}</a></p>}
+      <h2 class="h3">其他{section.name}</h2>
+      <ul class="sibs">{siblings.filter((s) => s.slug !== d.slug).map((s) => <li><a href={`${section.path}/${s.slug}`}>{s.short}</a></li>)}</ul>
+    </div>
+  </section>
+  <Cta />
+</Base>
+<style>
+  .crumb { font-size: .88rem; color: var(--ink-3); margin-bottom: 20px; }
+  .crumb a { color: var(--ink-3); }
+  .h3 { font-family: var(--sans); font-size: 1.15rem; margin-bottom: .35em; color: var(--heading); }
+  .more { font-weight: 600; margin-bottom: 28px; }
+  .sibs { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .sibs a { display: inline-block; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); text-decoration: none; font-size: .92rem; }
+  .sibs a:hover { border-color: var(--brand); }
+</style>

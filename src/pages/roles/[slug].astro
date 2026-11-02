@@ -1,0 +1,10 @@
+---
+import DetailPage from '../../components/DetailPage.astro';
+import { roleDetails } from '../../data/details';
+
+export function getStaticPaths() {
+  return roleDetails.map((d) => ({ params: { slug: d.slug }, props: { d } }));
+}
+const { d } = Astro.props;
+---
+<DetailPage d={d} section={{ name: '角色', path: '/roles' }} siblings={roleDetails} />

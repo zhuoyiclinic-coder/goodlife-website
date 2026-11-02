@@ -1,0 +1,19 @@
+---
+import DetailPage from '../../components/DetailPage.astro';
+import { clinicTypes, featureDetails } from '../../data/details';
+
+export function getStaticPaths() {
+  return clinicTypes.map((d) => ({ params: { slug: d.slug }, props: { d } }));
+}
+const { d } = Astro.props;
+---
+<DetailPage d={d} section={{ name: '診所類型', path: '/clinics' }} siblings={clinicTypes}>
+  <section class="section tight">
+    <div class="wrap" style="max-width:860px">
+      <h2>常用的功能</h2>
+      <div class="grid c2">
+        {featureDetails.map((f) => <a class="card" href={`/features/${f.slug}`} style="text-decoration:none"><h3>{f.short}</h3><p>{f.description}</p></a>)}
+      </div>
+    </div>
+  </section>
+</DetailPage>

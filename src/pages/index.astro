@@ -5,12 +5,14 @@ import Faq from '../components/Faq.astro';
 import Cta from '../components/Cta.astro';
 import { brand, moneyFlow, features, roles, faqs } from '../data/site';
 import { faqSchema, softwareSchema } from '../data/schema';
-import boardDesktop from '../assets/shots/board-desktop.png';
+import perfDesktop from '../assets/shots/perf-desktop.png';
 import boardMobile from '../assets/shots/board-mobile.png';
 import receptionMobile from '../assets/shots/reception-mobile.png';
 import clientsMobile from '../assets/shots/clients-mobile.png';
 
 const homeFaqs = faqs.slice(0, 5);
+// 和 site.ts 的 roles 同順序：老闆、櫃台、諮詢師、醫師、護理師、美容師、會計、店長
+const roleSlugs = ['owner', 'reception', 'consultant', 'doctor', 'nurse', 'beautician', 'accountant', 'manager'];
 const pains = [
   ['月底對帳', '三份 Excel 對三天，數字還兜不起來', '結帳當下就做好傳票，月結直接出報表'],
   ['套票剩幾堂', '翻紙本、問諮詢師、客人說的不一樣', '每位客人的剩餘堂數與殘值即時查得到'],
@@ -43,7 +45,7 @@ const pains = [
   <section class="shot-stage" id="screens" aria-label="系統畫面">
     <div class="wrap">
       <figure class="tilt" data-tilt>
-        <Image src={boardDesktop} alt="GoodLife 預約表畫面：當天值班人員與每個時段的預約，示範資料" widths={[720, 1200, 1600]} sizes="(min-width: 1120px) 1088px, 100vw" loading="eager" />
+        <Image src={perfDesktop} alt="GoodLife 業績總表：一個月的業績合計與每位人員的個人業績、產品業績，示範資料" widths={[720, 1200, 1600]} sizes="(min-width: 1120px) 1088px, 100vw" loading="eager" />
       </figure>
       <p class="muted center caption">畫面為示範診所，資料皆為虛構。</p>
     </div>
@@ -103,7 +105,7 @@ const pains = [
           <Image src={clientsMobile} alt="諮詢師手機畫面：我的客戶清單，示範資料" widths={[300, 520]} sizes="260px" />
         </div>
         <div class="grid c2">
-          {roles.map((r) => <div class="card reveal"><h3>{r.title}</h3><p>{r.body}</p></div>)}
+          {roles.map((r, i) => <a class="card reveal fcard" href={`/roles/${roleSlugs[i]}`}><h3>{r.title}</h3><p>{r.body}</p></a>)}
         </div>
       </div>
     </div>
@@ -135,7 +137,7 @@ const pains = [
       <div class="eyebrow">功能</div>
       <h2>一套系統，八大模組</h2>
       <div class="grid c4">
-        {features.map((f) => <div class="card reveal"><h3>{f.title}</h3><p>{f.body}</p></div>)}
+        {features.map((f) => <a class="card reveal fcard" href={`/features/${f.slug}`}><h3>{f.title}</h3><p>{f.body}</p></a>)}
       </div>
       <p style="margin-top:24px"><a href="/features">看完整功能說明 →</a></p>
     </div>
@@ -235,6 +237,8 @@ const pains = [
   .quote { margin: 0; padding: 32px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
   .quote p { font-size: 1.3rem; font-weight: 700; line-height: 1.6; color: var(--heading); }
 
+  .fcard { text-decoration: none; transition: border-color .2s, transform .2s; }
+  .fcard:hover { border-color: var(--brand); }
   .price-teaser { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; padding: 40px; border-radius: 28px; border: 1px solid var(--line); background: var(--surface); }
   .price-teaser h2 { margin-bottom: .3em; }
   .price-teaser .lead { margin: 0; }

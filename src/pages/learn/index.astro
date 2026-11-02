@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import ListPage from '../../components/ListPage.astro';
+const all = (await getCollection('learn')).sort((a, b) => a.data.title.localeCompare(b.data.title, 'zh-Hant'));
+---
+<ListPage title="醫美診所經營知識庫" eyebrow="知識庫" path="/learn"
+  description="醫美診所的套票、儲值金、抽成、發票、兩個統編、耗材、個資與換系統，實用問答整理。"
+  lead="診所老闆與會計最常問的問題，一篇回答一件事。法規與稅務細節請再向會計師、律師確認。"
+  items={all.map((a) => ({ href: `/learn/${a.data.slug}`, title: a.data.title, body: a.data.description }))} />

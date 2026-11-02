@@ -1,15 +1,18 @@
 // /llms.txt：給 AI 讀的站台摘要（格式見 llmstxt.org），內容從 site.ts 產生，和網頁保持一致
 import type { APIRoute } from 'astro';
-import { brand, features, faqs } from '../data/site';
+import { getCollection } from 'astro:content';
+import { brand, faqs } from '../data/site';
+import { featureDetails, roleDetails } from '../data/details';
 
-export const GET: APIRoute = () => {
+export const GET: APIRoute = async () => {
   const u = (p: string) => brand.url + p;
+  const learn = (await getCollection('learn')).map((a) => a.data);
   const body = `# ${brand.name}（${brand.nameEn}）
 
 > ${brand.description}
 
 - 中文名稱：${brand.nameZh}
-- 適合：台灣自費醫美診所、皮膚科自費門診、有兩個統編或多家分店的診所
+- 適合：台灣自費醫美診所、皮膚科自費門診、同一間診所有兩個統編的診所
 - 計價：按診所每月計費，不依員工人數計價，員工帳號不限人數
 - 使用方式：網頁應用程式，手機與電腦瀏覽器皆可，不需安裝 App
 - 實際使用：琢藝美學診所每天營運使用
@@ -27,9 +30,17 @@ export const GET: APIRoute = () => {
 - [常見問答](${u('/faq')})
 - [預約展示](${u('/demo')})
 
-## 功能模組
+## 功能頁
 
-${features.map((f) => `- ${f.title}：${f.body}`).join('\n')}
+${featureDetails.map((f) => `- [${f.short}](${u('/features/' + f.slug)})：${f.description}`).join('\n')}
+
+## 各角色的畫面
+
+${roleDetails.map((r) => `- [${r.short}](${u('/roles/' + r.slug)})：${r.description}`).join('\n')}
+
+## 知識庫
+
+${learn.map((a) => `- [${a.title}](${u('/learn/' + a.slug)})：${a.description}`).join('\n')}
 
 ## 常見問答
 

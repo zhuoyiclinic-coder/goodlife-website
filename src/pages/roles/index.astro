@@ -1,0 +1,8 @@
+---
+import ListPage from '../../components/ListPage.astro';
+import { roleDetails } from '../../data/details';
+---
+<ListPage title="每個角色在 GoodLife 看到什麼" eyebrow="角色" path="/roles"
+  description="老闆、店長、櫃台、諮詢師、醫師、護理師、美容師、會計，各自在 GoodLife 的工作畫面。"
+  lead="每個人打開手機，看到的是自己今天要做的事。每個角色能用哪些功能，老闆可以在權限表逐項設定。"
+  items={roleDetails.map((r) => ({ href: `/roles/${r.slug}`, title: r.short, body: r.description }))} />
