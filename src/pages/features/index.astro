@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import { brand, features, moneyFlow } from '../../data/site';
+import { breadcrumb, softwareSchema } from '../../data/schema';
+
+const title = '功能總覽';
+const description = 'GoodLife 顧德萊八大模組：預約與 LINE 提醒、結帳與電子發票、套票與儲值金、業績抽成、庫存耗材、排班出勤薪資、多法人帳務與 401、老闆報表。';
+const steps = ['預約', '報到', '諮詢', '結帳', '發票與傳票', '套票儲值', '庫存', '抽成薪資', '報表'];
+---
+<Base title={title} description={description} jsonld={[softwareSchema(), breadcrumb([{ name: title, path: '/features' }])]}>
+  <header class="page-head">
+    <div class="wrap">
+      <div class="eyebrow">功能</div>
+      <h1>從客人預約到月底結帳，每一步都在同一套系統</h1>
+      <p class="updated">更新：{brand.updated}</p>
+      <p class="lead">GoodLife 依診所一天的流程設計。前一步輸入的資料，下一步直接用，不用再抄一次。</p>
+      <ol class="chain" aria-label="診所一天的流程">{steps.map((s) => <li>{s}</li>)}</ol>
+    </div>
+  </header>
+
+  <section class="section tight">
+    <div class="wrap">
+      <h2>八大模組</h2>
+      <div class="grid c2">
+        {features.map((f, i) => (
+          <article class="card" id={f.slug}>
+            <span class="tag">模組 {i + 1}</span>
+            <h3 style="margin-top:10px">{f.title}</h3>
+            <p>{f.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <h2>結帳一次，六件事同時更新</h2>
+      <div class="grid c3">
+        {moneyFlow.map((m) => <div class="card"><h3>{m.title}</h3><p>{m.body}</p></div>)}
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>
+<style>
+  .chain { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chain li { padding: 6px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: .92rem; }
+  .chain li:not(:last-child)::after { content: '→'; margin-left: 10px; color: var(--brand); }
+</style>

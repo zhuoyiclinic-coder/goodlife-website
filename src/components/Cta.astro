@@ -1,0 +1,20 @@
+---
+interface Props { title?: string; body?: string }
+const { title = '30 分鐘，看完一整天的診所流程', body = '用示範診所走一次：預約、報到、結帳、開發票、月底報表。你可以帶自己的問題來問。' } = Astro.props;
+---
+<section class="section">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>{title}</h2>
+      <p class="lead">{body}</p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn btn-primary" href="/demo">預約展示</a>
+        <a class="btn btn-ghost" href="/pricing">看價格</a>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .cta { text-align: center; padding: 56px 24px; border-radius: 28px; background: radial-gradient(120% 140% at 50% 0%, var(--brand-soft), var(--surface) 70%); border: 1px solid var(--line); }
+  .cta .lead { margin: 0 auto 24px; }
+</style>

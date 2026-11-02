@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { brand, faqs } from '../data/site';
+import { faqSchema, breadcrumb, softwareSchema } from '../data/schema';
+
+const title = '醫美診所管理系統';
+const description = '醫美診所管理系統是給自費醫美診所用的營運軟體，處理預約、自費結帳、套票與儲值金、業績抽成、會計傳票與電子發票。和健保 HIS 的差別、選購重點一次看懂。';
+const pageFaqs = faqs.filter((f) => /HIS|兩個統編|電子發票/.test(f.q));
+const rows = [
+  ['主要用途', '看診、開藥、健保申報', '自費療程的預約、結帳、追蹤'],
+  ['收入來源', '健保點數為主', '自費、套票、儲值金'],
+  ['結帳難處', '部分負擔、掛號費', '套票預收款、殘值轉換、多種付款混合'],
+  ['人員獎金', '較少', '諮詢師、醫師、美容師各有抽成與手技費'],
+  ['開立憑證', '醫療收據', '電子發票與醫療收據依品項判斷'],
+  ['帳務', '另用會計軟體', '結帳即產生傳票，可分兩個統編'],
+];
+---
+<Base title={title} description={description} jsonld={[softwareSchema(), faqSchema(pageFaqs), breadcrumb([{ name: title, path: '/aesthetic-clinic' }])]}>
+  <header class="page-head">
+    <div class="wrap" style="max-width:860px">
+      <div class="eyebrow">醫美診所</div>
+      <h1>醫美診所管理系統：和健保 HIS 不一樣的地方</h1>
+      <p class="updated">更新：{brand.updated}</p>
+      <p class="answer"><strong>醫美診所管理系統</strong>是給自費醫美診所用的營運軟體。它處理的不是健保申報，而是自費療程的預約、結帳、套票與儲值金的預收款、諮詢師與醫師的業績抽成、電子發票與會計傳票。GoodLife 顧德萊就是這一類系統。</p>
+    </div>
+  </header>
+
+  <section class="section tight">
+    <div class="wrap" style="max-width:860px">
+      <h2>醫美系統和健保 HIS 比一比</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">項目</th><th scope="col">一般診所 HIS</th><th scope="col">醫美診所系統</th></tr></thead>
+          <tbody>{rows.map(([k, a, b]) => <tr><th scope="row">{k}</th><td>{a}</td><td>{b}</td></tr>)}</tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap" style="max-width:860px">
+      <h2>選醫美系統，先問這五件事</h2>
+      <ol class="checklist">
+        <li><strong>套票與儲值金怎麼記？</strong>客人預付的錢在會計上是預收款，做完療程才轉成收入。系統要能看到每位客人剩多少堂、還有多少錢。</li>
+        <li><strong>業績怎麼分？</strong>一筆單常常有諮詢師、醫師、美容師一起分，比例或金額都要能設定，月底自動彙總。</li>
+        <li><strong>發票還是收據？</strong>醫療行為與商品的憑證不同，系統要能依品項判斷，並串接電子發票服務。</li>
+        <li><strong>兩個統編怎麼辦？</strong>很多醫美診所同時有診所和公司，收入要分開記帳、分開報營業稅。</li>
+        <li><strong>員工用得順嗎？</strong>櫃台、諮詢師、美容師多半用手機，畫面要簡單，帳號不該按人頭收費。</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap" style="max-width:860px">
+      <h2>常見問答</h2>
+      <Faq items={pageFaqs} />
+    </div>
+  </section>
+  <Cta />
+</Base>
+<style>
+  .checklist { padding-left: 1.3em; display: grid; gap: 14px; }
+  .checklist li { color: var(--ink-2); }
+  .checklist strong { color: var(--ink); display: block; }
+</style>

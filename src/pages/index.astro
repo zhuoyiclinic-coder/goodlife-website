@@ -1,0 +1,263 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { brand, moneyFlow, features, roles, faqs } from '../data/site';
+import { faqSchema, softwareSchema } from '../data/schema';
+import boardDesktop from '../assets/shots/board-desktop.png';
+import boardMobile from '../assets/shots/board-mobile.png';
+import receptionMobile from '../assets/shots/reception-mobile.png';
+import clientsMobile from '../assets/shots/clients-mobile.png';
+
+const homeFaqs = faqs.slice(0, 5);
+const pains = [
+  ['月底對帳', '三份 Excel 對三天，數字還兜不起來', '結帳當下就做好傳票，月結直接出報表'],
+  ['套票剩幾堂', '翻紙本、問諮詢師、客人說的不一樣', '每位客人的剩餘堂數與殘值即時查得到'],
+  ['抽成怎麼算', '月底人工拆單，常有人覺得被算少', '開單時就分好業績，每人隨時看得到自己的'],
+  ['兩個統編', '同一筆收入要手動拆到兩本帳', '商品預設歸哪個法人，結帳時可調整'],
+  ['耗材用量', '盤點才發現少，不知道用在哪', '療程配方自動扣耗材，記批號與效期'],
+];
+---
+<Base title={brand.tagline} description={brand.description} jsonld={[softwareSchema(), faqSchema(homeFaqs)]}>
+
+  <!-- 2 主視覺 -->
+  <section class="hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <div class="eyebrow">醫美診所營運管理系統</div>
+      <h1 class="hero-title">
+        <span class="line">從預約到月結，</span>
+        <span class="line">一套系統跑完<em>整間醫美診所</em></span>
+      </h1>
+      <p class="lead hero-lead">預約、結帳、電子發票、套票儲值金、傳票、抽成薪資、庫存與老闆報表，全部在同一套系統裡，彼此自動連動。員工用手機就能上手。</p>
+      <div class="btn-row hero-cta">
+        <a class="btn btn-primary" href="/demo">預約 30 分鐘展示</a>
+        <a class="btn btn-ghost" href="#screens">看真實畫面</a>
+      </div>
+      <p class="muted hero-note"><span>已在台灣醫美診所每天實際使用</span><span>員工帳號不限人數</span></p>
+    </div>
+  </section>
+
+  <!-- 3 系統畫面：捲動時從傾斜放平 -->
+  <section class="shot-stage" id="screens" aria-label="系統畫面">
+    <div class="wrap">
+      <figure class="tilt" data-tilt>
+        <Image src={boardDesktop} alt="GoodLife 預約表畫面：當天值班人員與每個時段的預約，示範資料" widths={[720, 1200, 1600]} sizes="(min-width: 1120px) 1088px, 100vw" loading="eager" />
+      </figure>
+      <p class="muted center caption">畫面為示範診所，資料皆為虛構。</p>
+    </div>
+  </section>
+
+  <!-- 4 痛點對照 -->
+  <section class="section">
+    <div class="wrap">
+      <div class="eyebrow">換掉 Excel 和紙本之後</div>
+      <h2>每個月最花時間的五件事</h2>
+      <div class="table-wrap reveal">
+        <table>
+          <thead><tr><th scope="col">事情</th><th scope="col">以前</th><th scope="col">用 GoodLife</th></tr></thead>
+          <tbody>
+            {pains.map(([k, a, b]) => <tr><th scope="row">{k}</th><td class="muted">{a}</td><td>{b}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 錢怎麼流：招牌段落 -->
+  <section class="section alt flow-sec">
+    <div class="wrap flow">
+      <div class="flow-sticky">
+        <div class="eyebrow">錢怎麼流</div>
+        <h2>結帳一次，<br />六件事同時更新</h2>
+        <p class="lead">櫃台按下結帳的那一刻，發票、傳票、套票堂數、每個人的業績、耗材庫存、老闆報表都已經處理好。月底不用再對帳。</p>
+        <div class="receipt" aria-hidden="true">
+          <div class="r-head"><span>結帳單</span><span class="mono">示範</span></div>
+          <div class="r-row"><span>皮秒雷射（全臉）× 1</span><span class="mono">8,800</span></div>
+          <div class="r-row"><span>保濕導入 5 堂套票</span><span class="mono">12,000</span></div>
+          <div class="r-row muted"><span>儲值金折抵</span><span class="mono">−3,000</span></div>
+          <div class="r-total"><span>實收</span><span class="mono">17,800</span></div>
+        </div>
+      </div>
+      <ol class="flow-steps">
+        {moneyFlow.map((m, i) => (
+          <li class="step" data-step>
+            <span class="num mono">{String(i + 1).padStart(2, '0')}</span>
+            <div><h3>{m.title}</h3><p>{m.body}</p></div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6 角色 -->
+  <section class="section">
+    <div class="wrap">
+      <div class="eyebrow">每個人打開手機，看到的是自己的工作</div>
+      <h2>八種角色，各有自己的畫面</h2>
+      <div class="roles">
+        <div class="phones reveal">
+          <Image src={receptionMobile} alt="櫃台手機畫面：今日預約、到店、結帳捷徑，示範資料" widths={[300, 520]} sizes="260px" />
+          <Image src={boardMobile} alt="手機上的預約表，示範資料" widths={[300, 520]} sizes="260px" />
+          <Image src={clientsMobile} alt="諮詢師手機畫面：我的客戶清單，示範資料" widths={[300, 520]} sizes="260px" />
+        </div>
+        <div class="grid c2">
+          {roles.map((r) => <div class="card reveal"><h3>{r.title}</h3><p>{r.body}</p></div>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 真實診所 -->
+  <section class="section alt">
+    <div class="wrap proof reveal">
+      <div>
+        <div class="eyebrow">客戶故事</div>
+        <h2>從一間醫美診所的日常長出來</h2>
+        <p class="lead">GoodLife 不是先寫好再找診所試用。它是在琢藝美學診所每天的營運裡一項一項做出來的：櫃台怎麼結帳、諮詢師怎麼算業績、會計怎麼月結，都是真實的人在真實的現場提出的需求。</p>
+        <a class="btn btn-ghost" href="/stories/zhuoyi">讀完整故事</a>
+      </div>
+      <div class="quote">
+        <p>琢藝美學診所每天在用</p>
+        <ul class="muted">
+          <li>櫃台、諮詢師、醫師、護理師</li>
+          <li>美容師、會計、店長、老闆</li>
+          <li>兩個統編分開記帳</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 功能 -->
+  <section class="section">
+    <div class="wrap">
+      <div class="eyebrow">功能</div>
+      <h2>一套系統，八大模組</h2>
+      <div class="grid c4">
+        {features.map((f) => <div class="card reveal"><h3>{f.title}</h3><p>{f.body}</p></div>)}
+      </div>
+      <p style="margin-top:24px"><a href="/features">看完整功能說明 →</a></p>
+    </div>
+  </section>
+
+  <!-- 9 資安 -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="eyebrow">資安與個資</div>
+      <h2>病患資料，只屬於你的診所</h2>
+      <div class="grid c4">
+        <div class="card reveal"><h3>獨立資料庫</h3><p>每家診所一套自己的資料庫，不和其他診所混放。</p></div>
+        <div class="card reveal"><h3>角色權限</h3><p>每個角色能用哪些功能，可以逐項設定。</p></div>
+        <div class="card reveal"><h3>稽核紀錄</h3><p>退費、改價、改金額等重要操作，都留下是誰在何時做的。</p></div>
+        <div class="card reveal"><h3>每日備份</h3><p>資料每天自動備份，連線全程加密。</p></div>
+      </div>
+      <p style="margin-top:24px"><a href="/security">看資安做法 →</a></p>
+    </div>
+  </section>
+
+  <!-- 10 價格 -->
+  <section class="section">
+    <div class="wrap price-teaser reveal">
+      <div>
+        <div class="eyebrow">價格</div>
+        <h2>按診所計價，不按人頭</h2>
+        <p class="lead">櫃台、諮詢師、美容師再多也不加價。價格、導入費、資料搬家怎麼收，全部寫在價格頁。</p>
+      </div>
+      <a class="btn btn-primary" href="/pricing">看價格方案</a>
+    </div>
+  </section>
+
+  <!-- 11 常見問答 -->
+  <section class="section alt">
+    <div class="wrap" style="max-width:820px">
+      <div class="eyebrow">常見問答</div>
+      <h2>診所老闆最常問的事</h2>
+      <Faq items={homeFaqs} />
+      <p style="margin-top:20px"><a href="/faq">看全部問答 →</a></p>
+    </div>
+  </section>
+
+  <!-- 12 行動呼籲 -->
+  <Cta />
+</Base>
+
+<style>
+  .hero { position: relative; padding: 96px 0 40px; overflow: hidden; }
+  .glow { position: absolute; inset: -30% -10% auto; height: 120%; background: radial-gradient(40% 50% at 30% 30%, var(--brand-glow), transparent 70%), radial-gradient(35% 45% at 75% 20%, rgba(192, 138, 78, .14), transparent 70%); filter: blur(20px); animation: drift 22s ease-in-out infinite alternate; pointer-events: none; }
+  @keyframes drift { to { transform: translate3d(4%, 6%, 0) scale(1.08); } }
+  .hero-inner { position: relative; text-align: center; }
+  .hero-title { max-width: 16em; margin: 0 auto 20px; }
+  .hero-title .line { display: block; }
+  .hero-title em { font-style: normal; color: var(--brand); }
+  .hero-lead { margin: 0 auto 28px; }
+  .hero-cta { justify-content: center; }
+  .hero-note { margin-top: 20px; font-size: .9rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; }
+  .hero-note span { white-space: nowrap; }
+  /* 標題逐行模糊淡入 */
+  :global(.js) .hero-title .line, :global(.js) .hero-lead, :global(.js) .hero-cta { opacity: 0; filter: blur(10px); transform: translateY(14px); animation: blurIn 1s cubic-bezier(.2,.7,.2,1) forwards; }
+  :global(.js) .hero-title .line:nth-child(2) { animation-delay: .15s; }
+  :global(.js) .hero-lead { animation-delay: .35s; }
+  :global(.js) .hero-cta { animation-delay: .5s; }
+  @keyframes blurIn { to { opacity: 1; filter: none; transform: none; } }
+
+  .shot-stage { padding: 8px 0 40px; perspective: 1400px; }
+  .tilt { margin: 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); transform-origin: 50% 0; transform: rotateX(var(--rx, 0deg)) scale(var(--sc, 1)); will-change: transform; background: var(--surface); }
+  .caption { font-size: .85rem; margin-top: 14px; }
+
+  .flow { display: grid; gap: 40px; }
+  @media (min-width: 900px) { .flow { grid-template-columns: 1fr 1fr; align-items: start; } .flow-sticky { position: sticky; top: 110px; } }
+  .receipt { margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; box-shadow: var(--shadow); max-width: 420px; font-size: .95rem; }
+  .r-head { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 10px; }
+  .r-head .mono { font-size: .75rem; color: var(--ink-3); font-weight: 500; }
+  .r-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+  .r-total { display: flex; justify-content: space-between; padding-top: 10px; font-weight: 700; color: var(--brand-deep); }
+  .mono { font-family: var(--mono); }
+  .flow-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .step { display: flex; gap: 16px; align-items: flex-start; padding: 22px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); opacity: .45; transform: scale(.98); transition: opacity .5s, transform .5s, border-color .5s, box-shadow .5s; }
+  .step.lit { opacity: 1; transform: none; border-color: var(--brand); box-shadow: 0 10px 30px -14px var(--brand-glow); }
+  .step .num { color: var(--brand); font-size: .9rem; padding-top: 3px; }
+  .step h3 { margin-bottom: 4px; }
+  .step p { margin: 0; color: var(--ink-2); font-size: .97rem; }
+  @media (min-width: 900px) { .flow-steps { padding: 18vh 0 12vh; gap: 10vh; } }
+  @media (prefers-reduced-motion: reduce) { .step { opacity: 1; transform: none; } }
+
+  .roles { display: grid; gap: 32px; }
+  .phones { display: flex; gap: 14px; justify-content: center; }
+  .phones :global(img) { width: 31%; max-width: 230px; border-radius: 22px; border: 6px solid var(--ink); box-shadow: var(--shadow); }
+  .phones :global(img:nth-child(2)) { transform: translateY(-18px); }
+  @media (min-width: 980px) { .roles { grid-template-columns: 5fr 6fr; align-items: center; } }
+
+  .proof { display: grid; gap: 32px; align-items: center; }
+  @media (min-width: 900px) { .proof { grid-template-columns: 3fr 2fr; } }
+  .quote { margin: 0; padding: 32px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+  .quote p { font-family: var(--serif); font-size: 1.35rem; line-height: 1.6; color: var(--ink); }
+
+  .price-teaser { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; padding: 40px; border-radius: 28px; border: 1px solid var(--line); background: var(--surface); }
+  .price-teaser h2 { margin-bottom: .3em; }
+  .price-teaser .lead { margin: 0; }
+</style>
+
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // 系統畫面：捲進來時從傾斜縮小放平
+  const tilt = document.querySelector<HTMLElement>('[data-tilt]');
+  if (tilt && !reduce && innerWidth >= 720) {
+    const update = () => {
+      const r = tilt.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight * 0.75)));
+      tilt.style.setProperty('--rx', (18 * (1 - p)).toFixed(2) + 'deg');
+      tilt.style.setProperty('--sc', (0.9 + 0.1 * p).toFixed(3));
+    };
+    update();
+    addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+  }
+  // 錢怎麼流：捲到哪一步就亮哪一步（亮過不再熄，手機上一次亮起）
+  const steps = document.querySelectorAll<HTMLElement>('[data-step]');
+  if (reduce || !('IntersectionObserver' in window)) steps.forEach((s) => s.classList.add('lit'));
+  else {
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) e.target.classList.add('lit'); }), { rootMargin: '-35% 0px -35% 0px' });
+    steps.forEach((s) => io.observe(s));
+  }
+</script>

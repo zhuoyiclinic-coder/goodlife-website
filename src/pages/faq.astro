@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { brand, faqs } from '../data/site';
+import { faqSchema, breadcrumb } from '../data/schema';
+
+const title = '常見問答';
+const description = 'GoodLife 顧德萊常見問答：價格怎麼算、和健保 HIS 差在哪、兩個統編、電子發票、手機使用、個資保護、導入與資料搬家。';
+---
+<Base title={title} description={description} jsonld={[faqSchema(faqs), breadcrumb([{ name: title, path: '/faq' }])]}>
+  <header class="page-head">
+    <div class="wrap" style="max-width:820px">
+      <div class="eyebrow">常見問答</div>
+      <h1>診所老闆最常問的事</h1>
+      <p class="updated">更新：{brand.updated}</p>
+    </div>
+  </header>
+  <section class="section tight" style="padding-top:0">
+    <div class="wrap" style="max-width:820px"><Faq items={faqs} /></div>
+  </section>
+  <Cta title="還有別的問題？" body="預約 30 分鐘展示，直接問。" />
+</Base>

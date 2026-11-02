@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { brand, pricing, faqs } from '../data/site';
+import { faqSchema, breadcrumb, softwareSchema } from '../data/schema';
+
+const title = '價格方案';
+const description = 'GoodLife 顧德萊按診所每月計費，不依員工人數計價，員工帳號不限人數。方案內容、導入與資料搬家、LINE 與電子發票費用怎麼算，一頁說清楚。';
+const pageFaqs = faqs.filter((f) => /收費|多久/.test(f.q));
+const fmt = (n: number) => 'NT$ ' + n.toLocaleString('zh-TW');
+---
+<Base title={title} description={description} jsonld={[softwareSchema(), faqSchema(pageFaqs), breadcrumb([{ name: title, path: '/pricing' }])]}>
+  <header class="page-head center">
+    <div class="wrap">
+      <div class="eyebrow">價格</div>
+      <h1>按診所計價，不按人頭</h1>
+      <p class="lead">{pricing.unit}。櫃台、諮詢師、美容師再多，也不加價。</p>
+      {!pricing.published && <p class="notice">各方案金額即將公布。現在預約展示，可以先拿到報價。</p>}
+    </div>
+  </header>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="grid c3 plans">
+        {pricing.plans.map((p) => (
+          <article class={'card plan' + (p.popular ? ' popular' : '')}>
+            {p.popular && <span class="tag">推薦</span>}
+            <h2 class="plan-name">{p.name}</h2>
+            <p class="muted">{p.for}</p>
+            <p class="price">{p.price ? <>{fmt(p.price)}<small>／月</small></> : <span class="muted">金額即將公布</span>}</p>
+            <ul>{p.items.map((it) => <li>{it}</li>)}</ul>
+            <a class={'btn ' + (p.popular ? 'btn-primary' : 'btn-ghost')} href="/demo">預約展示</a>
+          </article>
+        ))}
+      </div>
+      <p class="muted center" style="margin-top:20px">分店更多、或需要客製功能，請預約展示另外報價。</p>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap" style="max-width:860px">
+      <h2>價格怎麼算</h2>
+      <ul class="notes">{pricing.notes.map((n) => <li>{n}</li>)}</ul>
+      <div class="table-wrap" style="margin-top:28px">
+        <table>
+          <thead><tr><th scope="col">費用</th><th scope="col">誰收</th><th scope="col">怎麼算</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">系統月費</th><td>GoodLife</td><td>每家診所每月，依方案</td></tr>
+            <tr><th scope="row">導入與資料搬家</th><td>GoodLife</td><td>一次性，依舊資料的數量與格式報價</td></tr>
+            <tr><th scope="row">LINE 官方帳號</th><td>LINE</td><td>診所自己的帳號方案，依訊息量</td></tr>
+            <tr><th scope="row">電子發票加值服務</th><td>藍新或綠界</td><td>診所自己申辦，年費或張數費</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap" style="max-width:860px">
+      <h2>常見問答</h2>
+      <Faq items={pageFaqs} />
+    </div>
+  </section>
+  <Cta />
+</Base>
+<style>
+  .notice { display: inline-block; margin-top: 8px; padding: 10px 18px; border-radius: 999px; background: var(--brand-soft); color: var(--brand-deep); font-weight: 500; }
+  .plan { display: flex; flex-direction: column; gap: 4px; }
+  .plan.popular { border: 2px solid var(--brand); box-shadow: 0 16px 40px -20px var(--brand-glow); }
+  .plan { position: relative; }
+  .plan .tag { position: absolute; top: -13px; left: 24px; background: var(--brand); color: var(--surface); }
+  .plan-name { font-size: 1.6rem; margin: 8px 0 0; }
+  .price { font-size: 1.7rem; font-weight: 700; margin: 12px 0; }
+  .price small { font-size: .9rem; font-weight: 500; color: var(--ink-3); }
+  .price .muted { font-size: 1.05rem; font-weight: 500; }
+  .plan ul { padding-left: 1.2em; margin: 0 0 20px; color: var(--ink-2); flex: 1; }
+  .plan .btn { justify-content: center; }
+  .notes { padding-left: 1.2em; color: var(--ink-2); display: grid; gap: 8px; }
+</style>

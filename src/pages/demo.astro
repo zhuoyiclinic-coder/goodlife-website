@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import { breadcrumb } from '../data/schema';
+
+const title = '預約展示';
+const description = '預約 30 分鐘線上展示，用示範診所走一次預約、結帳、發票、月底報表的完整流程。';
+---
+<Base title={title} description={description} jsonld={[breadcrumb([{ name: title, path: '/demo' }])]}>
+  <section class="section">
+    <div class="wrap demo">
+      <div>
+        <div class="eyebrow">預約展示</div>
+        <h1>30 分鐘，看完一整天的診所流程</h1>
+        <p class="lead">留下聯絡方式，我們會在一個工作天內聯絡你，約一個方便的時間線上展示。</p>
+        <ul class="muted what">
+          <li>用示範診所走一次：預約 → 報到 → 結帳 → 發票 → 月底報表</li>
+          <li>看你最在意的部分：套票、抽成、兩個統編、庫存</li>
+          <li>現場報價，說明導入與資料搬家怎麼做</li>
+        </ul>
+      </div>
+      <form class="card form" id="demo-form" novalidate>
+        <label>姓名<input name="name" autocomplete="name" required maxlength="40" /></label>
+        <label>診所名稱<input name="clinic" autocomplete="organization" required maxlength="80" /></label>
+        <label>手機或 LINE ID<input name="contact" required maxlength="80" /></label>
+        <label>想先了解什麼（選填）<textarea name="note" rows="3" maxlength="1000"></textarea></label>
+        <label class="hp" aria-hidden="true">網站<input name="website" tabindex="-1" autocomplete="off" /></label>
+        <label class="consent"><input type="checkbox" name="consent" required /> 我同意 GoodLife 顧德萊使用以上資料聯絡我、安排展示，不會用在其他用途。</label>
+        <button class="btn btn-primary" type="submit">送出預約</button>
+        <p class="msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</Base>
+<style>
+  .demo { display: grid; gap: 32px; }
+  @media (min-width: 900px) { .demo { grid-template-columns: 1fr 1fr; align-items: start; } }
+  .demo h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+  .what { padding-left: 1.2em; display: grid; gap: 6px; }
+  .form { display: grid; gap: 16px; padding: 28px; }
+  .form label { display: grid; gap: 6px; font-weight: 500; font-size: .95rem; }
+  .form input:not([type="checkbox"]), .form textarea { font: inherit; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+  .form input:focus, .form textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; }
+  .consent { display: flex !important; gap: 10px; align-items: flex-start; font-weight: 400 !important; color: var(--ink-2); font-size: .9rem !important; }
+  .consent input { margin-top: 5px; }
+  .hp { position: absolute; left: -9999px; }
+  .form .btn { justify-content: center; }
+  .msg { margin: 0; min-height: 1.5em; }
+  .msg.ok { color: var(--brand-deep); font-weight: 600; }
+  .msg.err { color: #B4442F; }
+</style>
+<script>
+  const form = document.getElementById('demo-form') as HTMLFormElement;
+  const msg = form.querySelector('.msg') as HTMLElement;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const need = ['name', 'clinic', 'contact'].filter((k) => !String(fd.get(k) || '').trim());
+    if (need.length || !fd.get('consent')) {
+      msg.className = 'msg err';
+      msg.textContent = '請填姓名、診所名稱、聯絡方式，並勾選同意。';
+      return;
+    }
+    const btn = form.querySelector('button') as HTMLButtonElement;
+    btn.disabled = true;
+    msg.className = 'msg';
+    msg.textContent = '送出中…';
+    try {
+      const res = await fetch('/api/demo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(fd)),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset();
+      msg.className = 'msg ok';
+      msg.textContent = '收到了，我們會在一個工作天內聯絡你。';
+    } catch {
+      msg.className = 'msg err';
+      msg.textContent = '送出失敗，請稍後再試一次。';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>

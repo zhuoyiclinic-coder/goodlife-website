@@ -1,0 +1,66 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import { brand } from '../../data/site';
+import { breadcrumb } from '../../data/schema';
+
+const title = '琢藝美學診所：從一間診所的日常長出來的系統';
+const description = 'GoodLife 顧德萊是在琢藝美學診所每天的營運中做出來的。櫃台結帳、諮詢師業績、會計月結、兩個統編分帳，都是真實現場提出的需求。';
+const article = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  inLanguage: 'zh-Hant-TW',
+  dateModified: brand.updated,
+  author: { '@id': brand.url + '/#org' },
+  publisher: { '@id': brand.url + '/#org' },
+  about: { '@type': 'MedicalClinic', name: '琢藝美學診所' },
+};
+const needs = [
+  { who: '櫃台', need: '結帳時同時有現金、刷卡、儲值金折抵，還要決定開發票還是收據。', did: '一筆結帳混合多種付款，憑證依品項自動判斷。' },
+  { who: '諮詢師', need: '想隨時知道自己這個月的業績，而不是等月底人工算。', did: '開單時就分好業績，可以分給多位人員，個人頁即時看得到。' },
+  { who: '會計', need: '診所和公司是兩個統編，同一天的收入要拆成兩本帳。', did: '商品預設歸哪個法人，結帳時可調整；傳票、營業稅、401 依法人分開。' },
+  { who: '老闆', need: '客人想把沒做完的套票換成別的療程，價值怎麼算要講得清楚。', did: '殘值轉換直接算出舊套票剩多少價值、可以折抵多少。' },
+  { who: '美容師', need: '手技費常常月初才想起上個月漏登。', did: '手技費登記與月結連動，月初前幾天還能補登上個月。' },
+];
+---
+<Base title="客戶故事：琢藝美學診所" description={description} jsonld={[article, breadcrumb([{ name: '客戶故事', path: '/stories/zhuoyi' }])]}>
+  <header class="page-head">
+    <div class="wrap" style="max-width:820px">
+      <div class="eyebrow">客戶故事</div>
+      <h1>{title}</h1>
+      <p class="updated">更新：{brand.updated}</p>
+      <p class="answer">GoodLife 顧德萊不是先寫好再找診所試用。它是在<strong>琢藝美學診所</strong>每天的營運裡，由櫃台、諮詢師、醫師、護理師、美容師、會計、店長與老闆一起用出來的系統。</p>
+    </div>
+  </header>
+
+  <section class="section tight">
+    <div class="wrap" style="max-width:820px">
+      <h2>需求從現場來</h2>
+      <p class="lead">每一項功能都對應一個真實的人、真實的麻煩。以下是幾個例子。</p>
+      <div class="needs">
+        {needs.map((n) => (
+          <article class="card">
+            <span class="tag">{n.who}</span>
+            <p class="need">{n.need}</p>
+            <p class="did"><strong>現在：</strong>{n.did}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap" style="max-width:820px">
+      <h2>為什麼這對其他診所重要</h2>
+      <p class="lead">一般套裝系統是先設計功能，再要求診所配合。GoodLife 的每個流程，都先在一間正在營業的醫美診所裡跑過：真實的客人、真實的結帳、真實的月結。你拿到的是已經被現場磨過的版本。</p>
+    </div>
+  </section>
+  <Cta title="想看琢藝每天用的流程？" body="預約展示會用示範診所走一次同樣的流程，資料皆為虛構。" />
+</Base>
+<style>
+  .needs { display: grid; gap: 14px; margin-top: 20px; }
+  .need { color: var(--ink) !important; margin: 10px 0 8px !important; font-size: 1.02rem !important; }
+  .did { margin: 0 !important; }
+</style>
