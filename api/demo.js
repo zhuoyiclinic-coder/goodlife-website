@@ -40,7 +40,8 @@ export default async function handler(req, res) {
       : /domain|from/i.test(t) ? 'sender-not-verified' : 'mail-failed-' + r.status;
     return res.status(502).json({ ok: false, error: kind });
   }
-  return res.status(200).json({ ok: true });
+  const sent = await r.json().catch(() => ({}));
+  return res.status(200).json({ ok: true, id: sent.id || null });
 }
 
 function safeJson(s) { try { return JSON.parse(s); } catch { return {}; } }
