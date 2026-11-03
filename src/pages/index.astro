@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
 import Cta from '../components/Cta.astro';
 import ShotTabs from '../components/ShotTabs.astro';
-import { brand, moneyFlow, features, roles, faqs } from '../data/site';
+import { brand, moneyFlow, features, roles, faqs, custom } from '../data/site';
 import { faqSchema, softwareSchema } from '../data/schema';
 import perfDesktop from '../assets/shots/perf-desktop.png';
 import boardMobile from '../assets/shots/board-mobile.png';
@@ -110,6 +110,22 @@ const pains = [
           </li>
         ))}
       </ol>
+    </div>
+  </section>
+
+  <!-- 5.5 客製化導入 -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fit reveal">
+        <div class="eyebrow">客製化導入</div>
+        <h2>{custom.title}</h2>
+        <p class="lead">{custom.lead}</p>
+        <ol class="fit-steps">
+          {custom.steps.map((s, i) => <li><span class="num mono">{String(i + 1).padStart(2, '0')}</span><h3>{s.t}</h3><p>{s.d}</p></li>)}
+        </ol>
+        <p class="fit-scope">{custom.scope}</p>
+        <a href="/switch">看導入怎麼進行 →</a>
+      </div>
     </div>
   </section>
 
@@ -246,6 +262,16 @@ const pains = [
   @media (min-width: 900px) { .flow-steps { padding: 18vh 0 12vh; gap: 10vh; } }
   @media (prefers-reduced-motion: reduce) { .step { opacity: 1; transform: none; } }
 
+  .fit { padding: 48px 40px; border-radius: 28px; background: linear-gradient(135deg, var(--brand-soft), rgba(25, 199, 190, .1)); border: 1px solid var(--line); }
+  .fit .lead { max-width: 46em; }
+  .fit-steps { list-style: none; padding: 0; margin: 28px 0 20px; display: grid; gap: 16px; }
+  @media (min-width: 760px) { .fit-steps { grid-template-columns: repeat(3, 1fr); } }
+  .fit-steps li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  .fit-steps .num { color: var(--teal-ink); font-weight: 700; font-size: .9rem; }
+  .fit-steps h3 { margin: 6px 0 4px; }
+  .fit-steps p { margin: 0; color: var(--ink-2); font-size: .97rem; }
+  .fit-scope { color: var(--ink-2); font-size: .95rem; margin: 0 0 12px; }
+  @media (max-width: 640px) { .fit { padding: 32px 20px; border-radius: 20px; } }
   .roles { display: grid; gap: 32px; }
   .phones { display: flex; gap: 14px; justify-content: center; }
   .phones :global(img) { width: 31%; max-width: 230px; border-radius: 22px; border: 6px solid var(--ink); box-shadow: var(--shadow); }

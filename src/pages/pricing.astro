@@ -7,7 +7,7 @@ import { faqSchema, breadcrumb, softwareSchema } from '../data/schema';
 
 const title = '價格方案';
 const description = 'GoodLife 好境按診所每月計費，不依員工人數計價，員工帳號不限人數。方案內容、導入與資料搬家、LINE 與電子發票費用怎麼算，一頁說清楚。';
-const pageFaqs = faqs.filter((f) => /收費|多久/.test(f.q));
+const pageFaqs = faqs.filter((f) => /收費|流程改|多久/.test(f.q));
 const fmt = (n: number) => 'NT$ ' + n.toLocaleString('zh-TW');
 ---
 <Base title={title} description={description} jsonld={[softwareSchema(), faqSchema(pageFaqs), breadcrumb([{ name: title, path: '/pricing' }])]}>
@@ -29,13 +29,13 @@ const fmt = (n: number) => 'NT$ ' + n.toLocaleString('zh-TW');
             <h2 class="plan-name">{p.name}</h2>
             <p class="muted">{p.for}</p>
             <p class="price">{pricing.published && p.price ? <>{fmt(p.price)}<small>／月{p.from ? '起' : ''}</small></> : <span class="muted">金額即將公布</span>}</p>
-            {pricing.published && p.setup && <p class="setup">導入費 {fmt(p.setup)}{p.from ? ' 起' : ''}（一次）</p>}
+            {pricing.published && p.setup && <p class="setup">導入費 {fmt(p.setup)}{p.from ? ' 起' : ''}（一次，含依流程調整）</p>}
             <ul>{p.items.map((it) => <li>{it}</li>)}</ul>
             <a class={'btn ' + (p.popular ? 'btn-primary' : 'btn-ghost')} href="/demo">預約展示</a>
           </article>
         ))}
       </div>
-      <p class="muted center" style="margin-top:20px">有多家分店（每家分店各用一套獨立系統）、或需要客製功能，請預約展示另外報價。</p>
+      <p class="muted center" style="margin-top:20px">導入時依你的流程調整介面與功能，包含在導入費裡。全新功能另外報價，通常一個工作天可以完成。<br />有多家分店（每家分店各用一套獨立系統）請預約展示另外報價。</p>
     </div>
   </section>
 
@@ -48,7 +48,8 @@ const fmt = (n: number) => 'NT$ ' + n.toLocaleString('zh-TW');
           <thead><tr><th scope="col">費用</th><th scope="col">誰收</th><th scope="col">怎麼算</th></tr></thead>
           <tbody>
             <tr><th scope="row">系統月費</th><td>GoodLife</td><td>每家診所每月，依方案</td></tr>
-            <tr><th scope="row">導入與資料搬家</th><td>GoodLife</td><td>一次性，依方案（見上方），舊資料特別多或格式特殊另外報價</td></tr>
+            <tr><th scope="row">導入與資料搬家</th><td>GoodLife</td><td>一次性，依方案（見上方），含依診所流程調整介面與功能；舊資料特別多或格式特殊另外報價</td></tr>
+            <tr><th scope="row">全新功能</th><td>GoodLife</td><td>需求表以外的新功能另外報價，通常一個工作天可以完成</td></tr>
             <tr><th scope="row">LINE 官方帳號</th><td>LINE</td><td>診所自己的帳號方案，依訊息量</td></tr>
             <tr><th scope="row">電子發票加值服務</th><td>藍新或綠界</td><td>診所自己申辦，年費或張數費</td></tr>
           </tbody>

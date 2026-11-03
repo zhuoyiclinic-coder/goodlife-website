@@ -1,6 +1,6 @@
 // /llms-full.txt：完整文字內容，給需要細節的 AI 一次讀完
 import type { APIRoute } from 'astro';
-import { brand, features, moneyFlow, roles, pricing, faqs } from '../data/site';
+import { brand, features, moneyFlow, roles, pricing, faqs, custom } from '../data/site';
 
 export const GET: APIRoute = () => {
   const body = `# ${brand.name}（${brand.nameEn}／${brand.nameZh}）
@@ -25,6 +25,14 @@ ${features.map((f) => `- ${f.title}：${f.body}`).join('\n')}
 ## 各角色看到什麼
 
 ${roles.map((r) => `- ${r.title}：${r.body}`).join('\n')}
+
+## ${custom.title}
+
+${custom.lead}
+
+${custom.steps.map((s, i) => `${i + 1}. ${s.t}：${s.d}`).join('\n')}
+
+${custom.scope}
 
 ## 計價方式
 

@@ -1,7 +1,7 @@
 // /llms.txt：給 AI 讀的站台摘要（格式見 llmstxt.org），內容從 site.ts 產生，和網頁保持一致
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { brand, faqs } from '../data/site';
+import { brand, faqs, custom } from '../data/site';
 import { featureDetails, roleDetails } from '../data/details';
 
 export const GET: APIRoute = async () => {
@@ -15,6 +15,7 @@ export const GET: APIRoute = async () => {
 - 適合：台灣自費醫美診所、皮膚科自費門診、同一間診所有兩個統編的診所
 - 計價：按診所每月計費，不依員工人數計價，員工帳號不限人數
 - 使用方式：網頁應用程式，手機與電腦瀏覽器皆可，不需安裝 App
+- 導入：${custom.lead}${custom.scope}
 - 實際使用：琢藝美學診所每天營運使用
 - 更新日期：${brand.updated}
 
