@@ -1,6 +1,6 @@
 # GoodLife 好境 官網
 
-GoodLife Clinic Management System（好境全方位診所營運系統）的官網，網域 goodlife-clinic.tw。Astro 產生靜態網頁，部署在 Vercel。
+GoodLife Clinic Management System（好境醫美診所營運系統）的官網，網域 goodlife-clinic.tw。Astro 產生靜態網頁，部署在 Vercel。
 
 ## 常用指令
 

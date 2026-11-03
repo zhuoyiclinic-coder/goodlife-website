@@ -3,7 +3,7 @@
 export const brand = {
   name: 'GoodLife 好境',
   nameEn: 'GoodLife Clinic Management System',
-  nameZh: '好境全方位診所營運系統',
+  nameZh: '好境醫美診所營運系統',
   url: 'https://goodlife-clinic.tw',
   tagline: '從預約到月結，一套系統跑完整間醫美診所',
   description:
