@@ -16,8 +16,8 @@ const list = items.map((i) => ({ ...i, img: find(i.file) })).filter((i) => i.img
       <p class="muted">示範診所，資料皆為虛構。</p>
       <div class={'shots' + (list.length > 1 ? ' two' : '')}>
         {list.map((i) => (
-          <figure class={i.img!.width < i.img!.height ? 'phone' : ''}>
-            <Image src={i.img!} alt={i.caption} widths={[480, 900, 1400]} sizes="(min-width: 1000px) 480px, 100vw" />
+          <figure class={i.img!.width < i.img!.height ? 'phone' : 'wide'}>
+            <Image src={i.img!} alt={i.caption} quality={92} widths={i.img!.width < i.img!.height ? [300, 600, 780] : [640, 960, 1280, 1920, 2560]} sizes={i.img!.width < i.img!.height ? '300px' : '(min-width: 1280px) 1248px, 100vw'} />
             <figcaption>{i.caption}</figcaption>
           </figure>
         ))}
@@ -27,7 +27,9 @@ const list = items.map((i) => ({ ...i, img: find(i.file) })).filter((i) => i.img
 )}
 <style>
   .shots { display: grid; gap: 24px; margin-top: 8px; }
-  @media (min-width: 760px) { .shots.two { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 760px) { .shots.two { grid-template-columns: 1fr 1fr; }
+    /* 電腦畫面縮成半寬字會太小，一律整排顯示 */
+    .shots.two figure.wide { grid-column: 1 / -1; } }
   figure { margin: 0; }
   figure :global(img) { border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); }
   figure.phone :global(img) { max-width: 300px; margin: 0 auto; border-radius: 26px; border: 6px solid var(--heading); }

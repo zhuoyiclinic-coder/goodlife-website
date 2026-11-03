@@ -46,7 +46,7 @@ const pains = [
   <section class="shot-stage" aria-label="系統畫面">
     <div class="wrap">
       <figure class="tilt" data-tilt>
-        <Image src={perfDesktop} alt="GoodLife 業績總表：一個月的業績合計與每位人員的個人業績、產品業績，示範資料" widths={[720, 1200, 1600]} sizes="(min-width: 1280px) 1248px, 100vw" loading="eager" />
+        <Image src={perfDesktop} alt="GoodLife 業績總表：一個月的業績合計與每位人員的個人業績、產品業績，示範資料" quality={92} widths={[720, 1280, 1920, 2496, 2880]} sizes="(min-width: 1280px) 1248px, 100vw" loading="eager" />
       </figure>
       <p class="muted center caption">畫面為示範診所，資料皆為虛構。</p>
     </div>
@@ -120,9 +120,9 @@ const pains = [
       <h2>八種角色，各有自己的畫面</h2>
       <div class="roles">
         <div class="phones reveal">
-          <Image src={receptionMobile} alt="櫃台手機畫面：今日預約、到店、結帳捷徑，示範資料" widths={[300, 520]} sizes="260px" />
-          <Image src={boardMobile} alt="手機上的預約表，示範資料" widths={[300, 520]} sizes="260px" />
-          <Image src={clientsMobile} alt="諮詢師手機畫面：我的客戶清單，示範資料" widths={[300, 520]} sizes="260px" />
+          <Image src={receptionMobile} alt="櫃台手機畫面：今日預約、到店、結帳捷徑，示範資料" quality={92} widths={[260, 520, 780]} sizes="260px" />
+          <Image src={boardMobile} alt="手機上的預約表，示範資料" quality={92} widths={[260, 520, 780]} sizes="260px" />
+          <Image src={clientsMobile} alt="諮詢師手機畫面：我的客戶清單，示範資料" quality={92} widths={[260, 520, 780]} sizes="260px" />
         </div>
         <div class="grid c2">
           {roles.map((r, i) => <a class="card reveal fcard" href={`/roles/${roleSlugs[i]}`}><h3>{r.title}</h3><p>{r.body}</p></a>)}
