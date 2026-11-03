@@ -1,4 +1,4 @@
-# GoodLife 顧德萊：歡迎所有搜尋引擎與 AI 讀取、引用、學習本站內容
+# GoodLife 好境：歡迎所有搜尋引擎與 AI 讀取、引用、學習本站內容
 User-agent: *
 Allow: /
 

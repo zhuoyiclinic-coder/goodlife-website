@@ -1,6 +1,6 @@
-# GoodLife 顧德萊 官網
+# GoodLife 好境 官網
 
-GoodLife Clinic Management System（顧德萊診所營運管理系統）的官網，網域 goodlife-clinic.tw。Astro 產生靜態網頁，部署在 Vercel。
+GoodLife Clinic Management System（好境全方位診所營運系統）的官網，網域 goodlife-clinic.tw。Astro 產生靜態網頁，部署在 Vercel。
 
 ## 常用指令
 
