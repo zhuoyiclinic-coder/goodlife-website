@@ -11,7 +11,7 @@ const list = items.map((i) => ({ ...i, img: find(i.file) })).filter((i) => i.img
 ---
 {list.length > 0 && (
   <section class="section tight shots-sec">
-    <div class="wrap" style="max-width:1000px">
+    <div class="wrap">
       <h2>{title}</h2>
       <p class="muted">示範診所，資料皆為虛構。</p>
       <div class={'shots' + (list.length > 1 ? ' two' : '')}>

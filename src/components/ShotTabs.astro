@@ -14,7 +14,7 @@ const list = tabs.map((t) => ({ ...t, img: all[`../assets/shots/${t.file}.png`]?
   </div>
   {list.map((t, i) => (
     <figure class="panel" role="tabpanel" id={`panel-${i}`} aria-labelledby={`tab-${i}`} data-active={i === 0 ? 'true' : 'false'}>
-      <Image src={t.img!} alt={t.caption} widths={[720, 1200, 1600]} sizes="(min-width: 1120px) 1088px, 100vw" loading={i === 0 ? 'eager' : 'lazy'} />
+      <Image src={t.img!} alt={t.caption} widths={[720, 1200, 1600]} sizes="(min-width: 1280px) 1248px, 100vw" loading={i === 0 ? 'eager' : 'lazy'} />
       <figcaption>{t.caption}<span class="muted">　示範診所，資料皆為虛構</span></figcaption>
     </figure>
   ))}

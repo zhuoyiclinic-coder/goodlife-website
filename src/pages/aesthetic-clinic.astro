@@ -19,7 +19,7 @@ const rows = [
 ---
 <Base title={title} description={description} jsonld={[softwareSchema(), faqSchema(pageFaqs), breadcrumb([{ name: title, path: '/aesthetic-clinic' }])]}>
   <header class="page-head">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <div class="eyebrow">醫美診所</div>
       <h1>醫美診所管理系統：和健保 HIS 不一樣的地方</h1>
       <p class="updated">更新：{brand.updated}</p>
@@ -28,7 +28,7 @@ const rows = [
   </header>
 
   <section class="section tight">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <h2>醫美系統和健保 HIS 比一比</h2>
       <div class="table-wrap">
         <table>
@@ -40,7 +40,7 @@ const rows = [
   </section>
 
   <section class="section tight">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <h2>選醫美系統，先問這五件事</h2>
       <ol class="checklist">
         <li><strong>套票與儲值金怎麼記？</strong>客人預付的錢在會計上是預收款，做完療程才轉成收入。系統要能看到每位客人剩多少堂、還有多少錢。</li>
@@ -53,7 +53,7 @@ const rows = [
   </section>
 
   <section class="section tight">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <h2>常見問答</h2>
       <Faq items={pageFaqs} />
     </div>

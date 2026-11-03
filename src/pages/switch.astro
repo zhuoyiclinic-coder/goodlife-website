@@ -31,7 +31,7 @@ const faqs = [
 ---
 <Base title={title} description={description} jsonld={[faqSchema(faqs), breadcrumb([{ name: '換系統', path: '/switch' }])]}>
   <header class="page-head">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <div class="eyebrow">換系統</div>
       <h1>{title}</h1>
       <p class="updated">更新：{brand.updated}</p>
@@ -40,7 +40,7 @@ const faqs = [
   </header>
 
   <section class="section tight">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <h2>導入四階段</h2>
       <ol class="stages">
         {stages.map((s) => (
@@ -58,7 +58,7 @@ const faqs = [
   </section>
 
   <section class="section alt">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <h2>資料搬家六步驟</h2>
       <p class="lead">最重要的是客戶資料、剩餘套票堂數和儲值金餘額。這三樣錯了，客人會直接感受到。</p>
       <div class="grid c2">
@@ -68,7 +68,7 @@ const faqs = [
   </section>
 
   <section class="section tight">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <h2>上線當天</h2>
       <p class="lead">切換後立刻走一遍五項檢查，全部通過才算上線。</p>
       <ol class="smoke">{smoke.map((s) => <li>{s}</li>)}</ol>
@@ -79,7 +79,7 @@ const faqs = [
   </section>
 
   <section class="section tight">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <h2>常見問答</h2>
       <Faq items={faqs} />
     </div>

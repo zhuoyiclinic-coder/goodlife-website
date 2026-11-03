@@ -19,7 +19,7 @@ const items = [
 ---
 <Base title={title} description={description} jsonld={[faqSchema(pageFaqs), breadcrumb([{ name: title, path: '/security' }])]}>
   <header class="page-head">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <div class="eyebrow">資安與個資</div>
       <h1>病患資料，只屬於你的診所</h1>
       <p class="updated">更新：{brand.updated}</p>
@@ -27,7 +27,7 @@ const items = [
     </div>
   </header>
   <section class="section tight">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <div class="grid c2">
         {items.map((i) => <div class="card"><h2 class="h3">{i.t}</h2><p>{i.d}</p></div>)}
       </div>
@@ -35,7 +35,7 @@ const items = [
   </section>
   <Shots items={[{ file: 'perm', caption: '權限設定：每個角色、每個功能可以設成不能用、只能看或可以用' }, { file: 'audit', caption: '稽核軌跡：重要操作的人、時間、改前改後' }]} />
   <section class="section tight">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <h2>常見問答</h2>
       <Faq items={pageFaqs} />
     </div>

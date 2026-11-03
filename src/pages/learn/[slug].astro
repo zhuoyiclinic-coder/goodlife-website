@@ -23,7 +23,7 @@ const sources = a.data.sources.map((s) => { const [name, url] = s.split('|').map
 ---
 <Base title={a.data.title} description={a.data.description} jsonld={[article, breadcrumb([{ name: '知識庫', path: '/learn' }, { name: a.data.title, path }])]}>
   <article class="section">
-    <div class="wrap prose" style="max-width:760px">
+    <div class="wrap prose" style="max-width:960px">
       <nav class="crumb" aria-label="麵包屑"><a href="/">首頁</a> / <a href="/learn">知識庫</a></nav>
       <h1>{a.data.title}</h1>
       <p class="updated">更新：{a.data.updated}</p>

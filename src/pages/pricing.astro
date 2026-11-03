@@ -40,7 +40,7 @@ const fmt = (n: number) => 'NT$ ' + n.toLocaleString('zh-TW');
   </section>
 
   <section class="section alt">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <h2>價格怎麼算</h2>
       <ul class="notes">{pricing.notes.map((n) => <li>{n}</li>)}</ul>
       <div class="table-wrap" style="margin-top:28px">
@@ -58,7 +58,7 @@ const fmt = (n: number) => 'NT$ ' + n.toLocaleString('zh-TW');
   </section>
 
   <section class="section tight">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <h2>常見問答</h2>
       <Faq items={pageFaqs} />
     </div>

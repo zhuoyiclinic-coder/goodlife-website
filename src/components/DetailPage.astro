@@ -20,7 +20,7 @@ const jsonld = [breadcrumb([section, { name: d.short, path }]), ...(d.faqs.lengt
 ---
 <Base title={d.title} description={d.description} jsonld={jsonld}>
   <header class="page-head">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       <nav class="crumb" aria-label="麵包屑"><a href="/">首頁</a> / <a href={section.path}>{section.name}</a> / {d.short}</nav>
       <div class="eyebrow">{section.name}</div>
       <h1>{d.title}</h1>
@@ -31,8 +31,8 @@ const jsonld = [breadcrumb([section, { name: d.short, path }]), ...(d.faqs.lengt
 
   {d.points.length > 0 && (
     <section class="section tight">
-      <div class="wrap" style="max-width:860px">
-        <div class="grid c2">
+      <div class="wrap">
+        <div class="grid c3">
           {d.points.map((p) => <div class="card"><h2 class="h3">{p.t}</h2><p>{p.d}</p></div>)}
         </div>
       </div>
@@ -45,7 +45,7 @@ const jsonld = [breadcrumb([section, { name: d.short, path }]), ...(d.faqs.lengt
 
   {d.faqs.length > 0 && (
     <section class="section tight">
-      <div class="wrap" style="max-width:860px">
+      <div class="wrap">
         <h2>常見問答</h2>
         <Faq items={d.faqs} />
       </div>
@@ -53,7 +53,7 @@ const jsonld = [breadcrumb([section, { name: d.short, path }]), ...(d.faqs.lengt
   )}
 
   <section class="section tight">
-    <div class="wrap" style="max-width:860px">
+    <div class="wrap">
       {d.article && articleTitle && <p class="more">延伸閱讀：<a href={`/learn/${d.article}`}>{articleTitle}</a></p>}
       <h2 class="h3">其他{section.name}</h2>
       <ul class="sibs">{siblings.filter((s) => s.slug !== d.slug).map((s) => <li><a href={`${section.path}/${s.slug}`}>{s.short}</a></li>)}</ul>
