@@ -225,7 +225,7 @@ export const roleDetails: Detail[] = [
   },
   {
     slug: 'nurse', short: '護理師', title: '醫美護理師的工作畫面：療程準備、耗材、術後追蹤',
-    shots: [{file: "nur-home-m", caption: "護理師的手機主頁：待辦、在店客戶、敷麻倒數"}],
+    shots: [{file: "nur-home-m", caption: "護理師的手機主頁：今天核銷的耗材、批號，可以改量或取消"}],
     description: '護理師在 GoodLife 準備療程、記錄耗材使用、拍術前後照片。',
     answer: '護理師在 GoodLife 看當天的療程安排，療程用掉的耗材依配方扣庫存並記錄批號，術前後照片也在系統裡拍攝保存。',
     points: [
@@ -237,7 +237,7 @@ export const roleDetails: Detail[] = [
   },
   {
     slug: 'beautician', short: '美容師', title: '美容師的工作畫面：今日客人、手技費、耗材庫存',
-    shots: [{file: "bcn-stock-m", caption: "耗材庫存：缺料自動提醒，進貨與盤點在手機完成"}],
+    shots: [{file: "bcn-home-m", caption: "美容師的手機主頁：今天的手技費累計與待辦"}, {file: "bcn-fee-m", caption: "手技費登記：選客人、勾做了哪些項目，金額自動帶出"}],
     description: '美容師在 GoodLife 看今天的客人、開執行單、登記手技費、查耗材庫存，並看自己的業績。',
     answer: '美容師在 GoodLife 看今天排了哪些客人，做完療程開執行單扣堂數、登記手技費，保養品銷售、耗材庫存與月盤點也在手機上完成，個人 KPI 看得到自己的業績。',
     points: [
