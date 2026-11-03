@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
 import Cta from '../components/Cta.astro';
+import ShotTabs from '../components/ShotTabs.astro';
 import { brand, moneyFlow, features, roles, faqs } from '../data/site';
 import { faqSchema, softwareSchema } from '../data/schema';
 import perfDesktop from '../assets/shots/perf-desktop.png';
@@ -42,7 +43,7 @@ const pains = [
   </section>
 
   <!-- 3 系統畫面：捲動時從傾斜放平 -->
-  <section class="shot-stage" id="screens" aria-label="系統畫面">
+  <section class="shot-stage" aria-label="系統畫面">
     <div class="wrap">
       <figure class="tilt" data-tilt>
         <Image src={perfDesktop} alt="GoodLife 業績總表：一個月的業績合計與每位人員的個人業績、產品業績，示範資料" widths={[720, 1200, 1600]} sizes="(min-width: 1120px) 1088px, 100vw" loading="eager" />
@@ -64,6 +65,25 @@ const pains = [
           </tbody>
         </table>
       </div>
+    </div>
+  </section>
+
+  <!-- 4.5 真實畫面：點分頁切換 -->
+  <section class="section alt" id="screens">
+    <div class="wrap">
+      <div class="eyebrow center">看真實畫面</div>
+      <h2 class="center">不是設計稿，是每天在用的系統</h2>
+      <p class="lead center" style="margin:0 auto 28px">以下都是示範診所的實際畫面，點上方分頁切換。</p>
+      <ShotTabs tabs={[
+        { label: '結帳', file: 'checkout', caption: '結帳中心：待結帳的單、金額、開單人' },
+        { label: '客戶與套票', file: 'customer360', caption: '客戶資料：累積消費、未消耗療程、儲值金、套票' },
+        { label: '業績', file: 'perf-desktop', caption: '業績總表：每位人員的個人業績、產品業績與佔比' },
+        { label: '庫存', file: 'stock', caption: '庫存狀況：低於安全量、快到期的品項' },
+        { label: '排班', file: 'schedule', caption: '排班中心：每天各角色的班表與人數' },
+        { label: '薪資', file: 'payroll', caption: '薪資作業：本薪、加項、扣項、實發' },
+        { label: '權限', file: 'perm', caption: '權限設定：每個角色能用哪些功能，逐項設定' },
+        { label: '稽核', file: 'audit', caption: '稽核軌跡：誰在什麼時間改了什麼' },
+      ]} />
     </div>
   </section>
 

@@ -3,6 +3,7 @@
 import Base from '../layouts/Base.astro';
 import Faq from './Faq.astro';
 import Cta from './Cta.astro';
+import Shots from './Shots.astro';
 import { brand } from '../data/site';
 import { faqSchema, breadcrumb } from '../data/schema';
 import type { Detail } from '../data/details';
@@ -37,6 +38,8 @@ const jsonld = [breadcrumb([section, { name: d.short, path }]), ...(d.faqs.lengt
       </div>
     </section>
   )}
+
+  {d.shots && <Shots items={d.shots} />}
 
   <slot />
 

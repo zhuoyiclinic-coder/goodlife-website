@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
 import Cta from '../components/Cta.astro';
+import Shots from '../components/Shots.astro';
 import { brand, faqs } from '../data/site';
 import { faqSchema, breadcrumb } from '../data/schema';
 
@@ -32,6 +33,7 @@ const items = [
       </div>
     </div>
   </section>
+  <Shots items={[{ file: 'perm', caption: '權限設定：每個角色、每個功能可以設成不能用、只能看或可以用' }, { file: 'audit', caption: '稽核軌跡：重要操作的人、時間、改前改後' }]} />
   <section class="section tight">
     <div class="wrap" style="max-width:860px">
       <h2>常見問答</h2>

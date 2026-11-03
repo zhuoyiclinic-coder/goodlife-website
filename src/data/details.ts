@@ -10,11 +10,13 @@ export type Detail = {
   points: { t: string; d: string }[];
   faqs: { q: string; a: string }[];
   article?: string;   // 對應的知識庫文章 slug
+  shots?: { file: string; caption: string }[];   // 實際畫面（src/assets/shots/<file>.png）
 };
 
 export const featureDetails: Detail[] = [
   {
     slug: 'booking', short: '預約與 LINE 提醒', title: '醫美診所預約系統：預約表、線上預約、值班一張表',
+    shots: [{file: "instore", caption: "在店客戶：今天每個時段的客人，誰已報到、誰已離店"}, {file: "booking-m", caption: "客人線上預約：選日期、看當天醫師、選時段"}],
     description: 'GoodLife 預約表一次看當天的人、時段與值班人員，客人可以線上預約，櫃台報到、在店客戶都在同一處。',
     answer: 'GoodLife 的預約表依日、週、月檢視每個時段的客人，上方列出當天值班的醫師、諮詢師、美容師、護理師。客人可以線上預約，預約來源（廣告、介紹、搜尋）也會記下來。',
     points: [
@@ -31,6 +33,7 @@ export const featureDetails: Detail[] = [
   },
   {
     slug: 'checkout', short: '結帳、發票與收據', title: '醫美診所結帳系統：混合付款、電子發票與醫療收據',
+    shots: [{file: "checkout", caption: "結帳中心：待結帳的單、金額、開單人，一鍵進入結帳"}, {file: "items", caption: "商品療程管理：價格、分類、所屬法人、療程消耗一起設定"}],
     description: 'GoodLife 一筆結帳可以混合現金、刷卡、轉帳、儲值金折抵，依品項開電子發票或醫療收據，並自動做成傳票。',
     answer: 'GoodLife 結帳時一筆單可以混合多種付款方式（現金、刷卡、轉帳、分期、儲值金折抵），依品項判斷開電子發票或醫療收據，同時產生借貸平衡的傳票、更新套票與業績。',
     points: [
@@ -48,6 +51,7 @@ export const featureDetails: Detail[] = [
   },
   {
     slug: 'packages', short: '套票與儲值金', title: '醫美套票與儲值金管理：剩餘堂數、殘值轉換、預收款',
+    shots: [{file: "customer360", caption: "客戶資料：累積消費、未消耗療程、儲值金、套票一頁看完"}],
     description: 'GoodLife 記錄每位客人的套票剩餘堂數與儲值金餘額，支援殘值轉換、療程轉讓，預收款在會計上分開記錄。',
     answer: 'GoodLife 把客人買的套票與儲值金當成預收款管理：每次做療程扣一堂並轉成收入，剩餘堂數與殘值隨時查得到；客人想換療程時，可以用殘值轉換算出舊套票還值多少。',
     points: [
@@ -65,6 +69,7 @@ export const featureDetails: Detail[] = [
   },
   {
     slug: 'commission', short: '業績、抽成、醫師費', title: '醫美業績抽成系統：一筆單分給多人，月底自動彙總',
+    shots: [{file: "perf-desktop", caption: "業績總表：上個月每位人員的個人業績、產品業績與佔比"}, {file: "csl-kpi-m", caption: "諮詢師個人 KPI：本月目標、目前達成、離目標還差多少"}],
     description: 'GoodLife 開單時依品項把業績分給諮詢師、醫師、美容師，也能記為公司業績；業績總表依人員、品項、付款方式查詢。',
     answer: 'GoodLife 在開單時就依品項把業績分給一位或多位人員，也可以記為公司業績不算個人。業績總表可以依人員、品項、付款方式、未消耗療程查詢，手技費另外登記，月底一起結算。',
     points: [
@@ -82,6 +87,7 @@ export const featureDetails: Detail[] = [
   },
   {
     slug: 'inventory', short: '庫存、耗材、批號效期', title: '醫美耗材庫存管理：療程配方自動扣庫存、批號效期',
+    shots: [{file: "stock", caption: "庫存狀況：低於安全量、快到期的品項一眼看到"}, {file: "recipe", caption: "療程消耗設定：每個療程用哪些耗材、用多少"}],
     description: 'GoodLife 依療程消耗設定自動扣耗材庫存，記錄批號與效期，搭配月盤點與開封容器管理。',
     answer: 'GoodLife 先為每個療程設定會用到的耗材與用量，做療程時自動扣庫存；耗材依批號與效期管理，先到期的先用，月底盤點時對得出差異。',
     points: [
@@ -99,6 +105,7 @@ export const featureDetails: Detail[] = [
   },
   {
     slug: 'payroll', short: '排班、出勤、薪資', title: '診所排班出勤與薪資：手機打卡、請假、薪資結算',
+    shots: [{file: "schedule", caption: "排班中心：每天各角色的班表與人數"}, {file: "payroll", caption: "薪資作業：每位員工的本薪、加項、扣項、實發"}],
     description: 'GoodLife 的排班中心、手機打卡、請假與補卡審核、薪資中心、兼職結算、離職清算都在同一套系統。',
     answer: 'GoodLife 讓員工用手機打卡、請假，主管線上審核；排班中心排好班表後，出勤、加班、手技費與業績獎金在薪資中心一起結算，兼職與離職也有各自的結算流程。',
     points: [
@@ -115,6 +122,7 @@ export const featureDetails: Detail[] = [
   },
   {
     slug: 'accounting', short: '多法人帳務與 401', title: '一間診所兩個統編怎麼記帳：多法人帳務與 401',
+    shots: [{file: "monthclose", caption: "月結中心：月底要核對的項目，系統自動判斷是否完成"}, {file: "finance", caption: "財報中心：訂單金額、費用、淨利，依法人查詢"}],
     description: 'GoodLife 讓商品預設歸哪個法人、結帳時可調整，傳票、營業稅與 401 依法人分開，跨法人代墊也能結算。',
     answer: 'GoodLife 支援同一間診所有兩個以上統編：每個商品預設歸哪個法人，結帳時可以調整；收入、傳票、營業稅與 401 依法人分開計算，進項憑證也標明歸哪家，跨法人代墊的費用與薪資可以結算。',
     points: [
@@ -132,6 +140,7 @@ export const featureDetails: Detail[] = [
   },
   {
     slug: 'reports', short: '老闆報表', title: '醫美診所老闆報表：營收、業績、預收款一手掌握',
+    shots: [{file: "owner-home", caption: "老闆主頁：本月營收、公司業績、今日營收、本月新客"}, {file: "audit", caption: "稽核軌跡：誰在什麼時間改了什麼，一筆一筆查得到"}],
     description: 'GoodLife 老闆主頁顯示本月營收、公司業績、今日營收與新客，業績總表、財報中心、分析中心、預約來源成效都看得到。',
     answer: 'GoodLife 的老闆主頁一打開就看到本月營收、公司業績、今日營收與本月新客；業績總表依人員與品項拆開，財報中心看收支，預約來源成效看哪個管道帶來客人。',
     points: [
@@ -152,6 +161,7 @@ export const featureDetails: Detail[] = [
 export const roleDetails: Detail[] = [
   {
     slug: 'owner', short: '老闆', title: '醫美診所老闆的手機畫面：營收、業績、簽核',
+    shots: [{file: "owner-home-m", caption: "老闆的手機主頁"}],
     description: '老闆在 GoodLife 看本月營收與業績、簽核請款與退費、設定權限，重要操作都有稽核軌跡。',
     answer: '老闆打開 GoodLife 就看到本月營收、公司業績、今日營收與新客，請款與退費在手機上簽核，每個角色能用哪些功能也由老闆在權限表設定。',
     points: [
@@ -164,6 +174,7 @@ export const roleDetails: Detail[] = [
   },
   {
     slug: 'manager', short: '店長', title: '診所店長的工作畫面：排班、請假審核、現場調度',
+    shots: [{file: "mgr-home", caption: "店長主頁：今日營收、本月業績、諮詢師業績排行"}],
     description: '店長在 GoodLife 排班、審核請假與補卡、處理改價核准，同時也能開單、看預約表。',
     answer: '店長在 GoodLife 負責排班中心的班表、審核請假與補卡、核准超過門檻的改價，也能像諮詢師一樣開單、照顧客人，並查看現場的預約與在店客戶。',
     points: [
@@ -176,6 +187,7 @@ export const roleDetails: Detail[] = [
   },
   {
     slug: 'reception', short: '櫃台', title: '醫美診所櫃台系統：預約、報到、結帳一個畫面',
+    shots: [{file: "rec-home-m", caption: "櫃台的手機主頁：今日預約、到店、結帳捷徑"}],
     description: '櫃台在 GoodLife 處理今日預約、報到、結帳、開執行單、殘值轉換與下班結帳。',
     answer: '櫃台的 GoodLife 首頁就是今天的工作：今日預約數、報到、在店客戶、結帳，以及開執行單、療程轉讓、殘值轉換與下班結帳，都在同一個畫面的捷徑裡。',
     points: [
@@ -188,6 +200,7 @@ export const roleDetails: Detail[] = [
   },
   {
     slug: 'consultant', short: '諮詢師', title: '醫美諮詢師的工作畫面：我的客戶、開單、個人業績',
+    shots: [{file: "csl-clients-m", caption: "我的客戶：主責客人的累積消費與最近服務"}, {file: "csl-kpi-m", caption: "個人 KPI：本月目標與達成"}],
     description: '諮詢師在 GoodLife 看自己主責的客人、未消耗療程、建議聯絡客戶，開銷售單並隨時看到自己的業績。',
     answer: '諮詢師在 GoodLife 有「我的客戶」清單，看得到每位客人的累積消費、剩餘套票與最近服務；開銷售單時業績就分好，個人 KPI 隨時看得到這個月的成績。',
     points: [
@@ -200,6 +213,7 @@ export const roleDetails: Detail[] = [
   },
   {
     slug: 'doctor', short: '醫師', title: '醫美醫師的工作畫面：療程清單、同意書、醫師費',
+    shots: [{file: "doc-home-m", caption: "醫師的手機畫面：今天在店的客人與病歷、診斷、照片入口"}],
     description: '醫師在 GoodLife 看當天的療程與客人資料、術前後照片與同意書，並查看自己的醫師費。',
     answer: '醫師在 GoodLife 看得到當天排給自己的療程與客人、術前後照片與簽署的同意書，自己的醫師費也在系統裡計算。GoodLife 不處理健保申報。',
     points: [
@@ -211,6 +225,7 @@ export const roleDetails: Detail[] = [
   },
   {
     slug: 'nurse', short: '護理師', title: '醫美護理師的工作畫面：療程準備、耗材、術後追蹤',
+    shots: [{file: "nur-home-m", caption: "護理師的手機主頁：待辦、在店客戶、敷麻倒數"}],
     description: '護理師在 GoodLife 準備療程、記錄耗材使用、拍術前後照片。',
     answer: '護理師在 GoodLife 看當天的療程安排，療程用掉的耗材依配方扣庫存並記錄批號，術前後照片也在系統裡拍攝保存。',
     points: [
@@ -222,6 +237,7 @@ export const roleDetails: Detail[] = [
   },
   {
     slug: 'beautician', short: '美容師', title: '美容師的工作畫面：今日客人、手技費、耗材庫存',
+    shots: [{file: "bcn-stock-m", caption: "耗材庫存：缺料自動提醒，進貨與盤點在手機完成"}],
     description: '美容師在 GoodLife 看今天的客人、開執行單、登記手技費、查耗材庫存，並看自己的業績。',
     answer: '美容師在 GoodLife 看今天排了哪些客人，做完療程開執行單扣堂數、登記手技費，保養品銷售、耗材庫存與月盤點也在手機上完成，個人 KPI 看得到自己的業績。',
     points: [
@@ -234,6 +250,7 @@ export const roleDetails: Detail[] = [
   },
   {
     slug: 'accountant', short: '會計', title: '醫美診所會計的工作畫面：傳票、401、薪資、月結',
+    shots: [{file: "monthclose", caption: "月結中心"}, {file: "payroll", caption: "薪資作業"}],
     description: '會計在 GoodLife 處理請款、薪資、傳票、進項憑證、401 試算、月結與跨法人結算。',
     answer: '會計在 GoodLife 不用再對三份 Excel：結帳時傳票已經做好，進項憑證登記時就選好歸哪個法人，401 依法人試算，薪資、獎金、請款與月結也在同一套系統。',
     points: [

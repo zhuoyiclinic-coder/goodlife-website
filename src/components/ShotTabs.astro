@@ -1,0 +1,50 @@
+---
+// 首頁「看真實畫面」：點分頁切換畫面（沒有 JS 時全部依序顯示）
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props { tabs: { label: string; file: string; caption: string }[] }
+const { tabs } = Astro.props;
+const all = import.meta.glob<{ default: ImageMetadata }>('../assets/shots/*.png', { eager: true });
+const list = tabs.map((t) => ({ ...t, img: all[`../assets/shots/${t.file}.png`]?.default })).filter((t) => t.img);
+---
+<div class="tabs" data-tabs>
+  <div class="tab-list" role="tablist" aria-label="系統畫面">
+    {list.map((t, i) => <button type="button" role="tab" id={`tab-${i}`} aria-controls={`panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{t.label}</button>)}
+  </div>
+  {list.map((t, i) => (
+    <figure class="panel" role="tabpanel" id={`panel-${i}`} aria-labelledby={`tab-${i}`} data-active={i === 0 ? 'true' : 'false'}>
+      <Image src={t.img!} alt={t.caption} widths={[720, 1200, 1600]} sizes="(min-width: 1120px) 1088px, 100vw" loading={i === 0 ? 'eager' : 'lazy'} />
+      <figcaption>{t.caption}<span class="muted">　示範診所，資料皆為虛構</span></figcaption>
+    </figure>
+  ))}
+</div>
+<style>
+  .tab-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; }
+  .tab-list button { font: inherit; font-weight: 600; font-size: .95rem; padding: 9px 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+  .tab-list button[aria-selected="true"] { background: var(--brand); border-color: var(--brand); color: var(--surface); }
+  .panel { margin: 0 0 24px; }
+  .panel :global(img) { border-radius: 20px; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); }
+  .panel figcaption { margin-top: 12px; text-align: center; font-size: .93rem; color: var(--ink-2); }
+  :global(.js) .panel[data-active="false"] { display: none; }
+  :global(.js) .panel[data-active="true"] { animation: fadeUp .45s ease; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { :global(.js) .panel[data-active="true"] { animation: none; } }
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((root) => {
+    const btns = Array.from(root.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[role="tabpanel"]'));
+    const show = (i: number) => {
+      btns.forEach((b, k) => { b.setAttribute('aria-selected', k === i ? 'true' : 'false'); b.tabIndex = k === i ? 0 : -1; });
+      panels.forEach((p, k) => { p.dataset.active = k === i ? 'true' : 'false'; });
+    };
+    btns.forEach((b, i) => {
+      b.addEventListener('click', () => show(i));
+      b.addEventListener('keydown', (e) => {
+        const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (d) { const n = (i + d + btns.length) % btns.length; show(n); btns[n].focus(); }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,35 @@
+---
+// 系統實際畫面（示範診所，資料皆為虛構）。檔案放 src/assets/shots/<名稱>.png，用名稱指定。
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props { items: { file: string; caption: string }[]; title?: string }
+const { items, title = '實際畫面' } = Astro.props;
+const all = import.meta.glob<{ default: ImageMetadata }>('../assets/shots/*.png', { eager: true });
+const find = (f: string) => all[`../assets/shots/${f}.png`]?.default;
+const list = items.map((i) => ({ ...i, img: find(i.file) })).filter((i) => i.img);
+---
+{list.length > 0 && (
+  <section class="section tight shots-sec">
+    <div class="wrap" style="max-width:1000px">
+      <h2>{title}</h2>
+      <p class="muted">示範診所，資料皆為虛構。</p>
+      <div class={'shots' + (list.length > 1 ? ' two' : '')}>
+        {list.map((i) => (
+          <figure class={i.img!.width < i.img!.height ? 'phone' : ''}>
+            <Image src={i.img!} alt={i.caption} widths={[480, 900, 1400]} sizes="(min-width: 1000px) 480px, 100vw" />
+            <figcaption>{i.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+<style>
+  .shots { display: grid; gap: 24px; margin-top: 8px; }
+  @media (min-width: 760px) { .shots.two { grid-template-columns: 1fr 1fr; } }
+  figure { margin: 0; }
+  figure :global(img) { border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); }
+  figure.phone :global(img) { max-width: 300px; margin: 0 auto; border-radius: 26px; border: 6px solid var(--heading); }
+  figcaption { margin-top: 10px; font-size: .93rem; color: var(--ink-2); text-align: center; }
+</style>
