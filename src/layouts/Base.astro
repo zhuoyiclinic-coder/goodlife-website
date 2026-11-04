@@ -19,6 +19,7 @@ const org = {
   '@type': 'Organization',
   '@id': brand.url + '/#org',
   name: brand.name,
+  legalName: brand.company,
   alternateName: [brand.nameEn, brand.nameZh, 'GoodLife', '好境'],
   url: brand.url,
   logo: brand.url + '/brand/icon.svg',
@@ -109,7 +110,7 @@ const schemas = [org, site, ...jsonld];
         <a href="/llms.txt">llms.txt</a>
       </div>
     </div>
-    <div class="wrap" style="margin-top:28px">© 2026 {brand.name}</div>
+    <div class="wrap" style="margin-top:28px">© 2026 {brand.company}　{brand.name}</div>
   </footer>
 
   <script is:inline>

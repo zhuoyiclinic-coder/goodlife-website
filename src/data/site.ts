@@ -4,11 +4,12 @@ export const brand = {
   name: 'GoodLife 好境',
   nameEn: 'GoodLife Clinic Management System',
   nameZh: '好境醫美診所營運系統',
+  company: '格霖永續科技有限公司',
   url: 'https://goodlife-clinic.tw',
   tagline: '從預約到月結，一套系統跑完整間醫美診所',
   description:
     'GoodLife 好境是給台灣自費醫美診所用的雲端營運系統：預約、報到、諮詢、結帳、電子發票、套票與儲值金、傳票、業績抽成、薪資、庫存與老闆報表，一套跑完。每家診所使用獨立的資料庫。',
-  updated: '2026-11-03',
+  updated: '2026-11-04',
 };
 
 export const nav = [

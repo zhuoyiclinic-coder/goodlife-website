@@ -8,6 +8,7 @@ export const GET: APIRoute = () => {
 ${brand.description}
 
 網址：${brand.url}
+開發與營運：${brand.company}
 更新日期：${brand.updated}
 
 ## 一句話
