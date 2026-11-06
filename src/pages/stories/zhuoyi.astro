@@ -27,6 +27,14 @@ const change = [
   { t: '所有資料數位化', d: '客人、套票與儲值金、業績、薪資、庫存都在同一套系統，不用再翻紙本、對好幾份 Excel。' },
   { t: '照現場人員的做法調整', d: '櫃台、諮詢師、會計怎麼做事，系統就怎麼配合；現場提出的需求，一項一項調整成最符合琢藝的方式。' },
 ];
+// 業主 2026-11-06：導入後的數字。紙張＝琢藝正式資料庫 2026-05-06～2026-11-06 的單據筆數（一筆算一張、收據與發票不算）；
+//   碳排＝每張 12 公克（PaperCut 預設：每公噸紙 2.5 公噸 CO2e，只算造紙）；工時＝依琢藝現場流程估算（業主同意用估計值）
+const impact = [
+  { n: '4,152 張', t: '少印的紙', d: '6 個月內原本要印的單據：執行單 2,582、銷售單 1,261、請假與加班單 171、打卡卡 104、同意書 29、請款單 5。收據與發票不算。', src: '依系統紀錄計算' },
+  { n: '約 50 公斤', t: '少排放的二氧化碳', d: '4,152 張 × 每張 12 公克。只算造紙的保守係數，沒算印表機、碳粉與運送。', src: '依 PaperCut 係數估算' },
+  { n: '約 37 小時', t: '每個月省下的工時', d: '會計月結與算薪資約 16 小時、櫃台結帳約 17 小時（每位客人省約 5 分鐘）、老闆看營收約 4 小時；諮詢師每人再省約 2 小時。', src: '依琢藝現場流程估算' },
+  { n: '2 個工作天', t: '會計每月多出來的時間', d: '月結與薪資從約 3 天縮短到約 1 天，傳票、薪資由系統算好，會計只要核對。', src: '依琢藝現場流程估算' },
+];
 const needs = [
   { who: '櫃台', need: '結帳時同時有現金、刷卡、儲值金折抵，還要決定開發票還是收據。', did: '一筆結帳混合多種付款，憑證依品項自動判斷。' },
   { who: '諮詢師', need: '想隨時知道自己這個月的業績，而不是等月底人工算。', did: '開單時就分好業績，可以分給多位人員，個人頁即時看得到。' },
@@ -54,6 +62,23 @@ const needs = [
       <div class="grid c2">
         {change.map((c) => <div class="card"><h3>{c.t}</h3><p>{c.d}</p></div>)}
       </div>
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="wrap">
+      <h2>6 個月下來的改變</h2>
+      <p class="lead">統計期間：2026 年 5 月 6 日到 11 月 6 日。</p>
+      <div class="grid c2">
+        {impact.map((m) => (
+          <div class="card impact">
+            <b class="big">{m.n}</b>
+            <h3>{m.t}</h3>
+            <p>{m.d}</p>
+            <span class="src">{m.src}</span>
+          </div>
+        ))}
+      </div>
+      <p class="note">碳排係數：<a href="https://www.papercut.com/kb/Main/AdjustingEnvironmentalImpactCalculationValues/" target="_blank" rel="noopener">PaperCut 環境影響計算預設值</a>（每公噸紙 2.5 公噸二氧化碳當量，一張 A4 約 5 公克）。工時為現場流程的估算，各診所會因人數、客量不同。</p>
     </div>
   </section>
   <section class="section tight">
@@ -84,6 +109,10 @@ const needs = [
   .needs { display: grid; gap: 14px; margin-top: 20px; }
   .need { color: var(--ink) !important; margin: 10px 0 8px !important; font-size: 1.02rem !important; }
   .did { margin: 0 !important; }
+  .impact .big { display: block; font-size: 1.9rem; color: var(--brand-deep); line-height: 1.2; }
+  .impact h3 { margin-top: 4px; }
+  .impact .src { display: inline-block; margin-top: 8px; font-size: .82rem; color: var(--ink-3); background: var(--brand-soft); padding: 3px 10px; border-radius: 999px; }
+  .note { margin-top: 18px; font-size: .88rem; color: var(--ink-3); }
   .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 12px; text-align: center; }
   .stat b { display: block; font-size: 1.7rem; color: var(--brand-deep); }
