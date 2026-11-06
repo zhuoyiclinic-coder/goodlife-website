@@ -1,0 +1,67 @@
+---
+// 業主 2026-11-06：關於我們。公司資料取自格霖官網 glorytech.tw；事業版圖照業主說明
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import { brand } from '../data/site';
+import { breadcrumb } from '../data/schema';
+
+const title = '關於我們';
+const description = `GoodLife 好境由${brand.company}開發與營運。格霖以系統櫃工廠為人所知，同時經營系統板材、工廠機械、製造業 ERP、職人到府與 GoodLife 好境。`;
+const lines = [
+  { t: '系統櫃工廠', d: '桃園龜山自有工廠，全自動設備加上木工技術，從設計、加工到安裝一條龍。' },
+  { t: '系統板材', d: '進口板材原廠直送，格柵板、弧形門板、門組等特殊工藝在工廠統一製作。' },
+  { t: '工廠機械', d: '工廠機械設備相關的開發與營運。' },
+  { t: '製造業 ERP', d: '為製造業開發的 ERP 管理系統。' },
+  { t: '職人到府', d: '職人到府服務的開發與營運。' },
+  { t: 'GoodLife 好境', d: '診所營運系統：預約、結帳、套票、抽成、薪資、庫存與帳務一套跑完。' },
+];
+---
+<Base title={title} description={description} jsonld={[breadcrumb([{ name: title, path: '/about' }])]}>
+  <header class="page-head">
+    <div class="wrap">
+      <div class="eyebrow">關於我們</div>
+      <h1>不只是系統櫃工廠</h1>
+      <p class="updated">更新：{brand.updated}</p>
+      <p class="answer">GoodLife 好境由<strong>{brand.company}</strong>開發與營運。外面看到的格霖是一間系統櫃工廠；實際上，格霖同時經營系統板材、工廠機械、製造業 ERP、職人到府，以及 GoodLife 好境診所營運系統。</p>
+    </div>
+  </header>
+
+  <section class="section tight">
+    <div class="wrap">
+      <h2>格霖在做的事</h2>
+      <div class="grid c3">
+        {lines.map((l) => <div class="card"><h3>{l.t}</h3><p>{l.d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap narrow">
+      <h2>為什麼一間工廠會做診所系統</h2>
+      <p class="lead">工廠和診所看起來不一樣，但每天要處理的事很像：接單、排人、用料、收款、算薪資、對帳。格霖本來就在開發製造業 ERP 這類管理系統，再把同樣的能力帶進一間正在營業的醫美診所，跟櫃台、諮詢師、醫師、會計一起把系統磨到能每天用。</p>
+      <p class="lead">我們的做法是：先看現場怎麼做事，再讓系統配合現場，而不是要現場配合系統。</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <h2>公司資訊</h2>
+      <dl class="info">
+        <div><dt>公司名稱</dt><dd>{brand.company}</dd></div>
+        <div><dt>桃園工廠／展間</dt><dd>桃園市龜山區大華里忠義路二段 240 巷 7 號</dd></div>
+        <div><dt>台北展間</dt><dd>臺北市中山區遼寧街 63 巷 30 號地下一樓</dd></div>
+        <div><dt>GoodLife 好境洽詢</dt><dd><a href="/demo">預約展示表單</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <Cta />
+</Base>
+<style>
+  .narrow { max-width: 46em; }
+  .info { display: grid; gap: 12px; margin: 0; }
+  .info div { display: grid; grid-template-columns: 9em 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .info dt { color: var(--ink-3); }
+  .info dd { margin: 0; color: var(--ink); }
+  @media (max-width: 560px) { .info div { grid-template-columns: 1fr; gap: 4px; } }
+</style>

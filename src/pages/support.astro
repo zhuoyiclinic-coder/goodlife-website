@@ -1,0 +1,68 @@
+---
+// 業主 2026-11-06：服務與支援
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { brand } from '../data/site';
+import { faqSchema, breadcrumb } from '../data/schema';
+
+const title = '服務與支援';
+const description = 'GoodLife 好境的導入陪跑、客服時間與回覆速度、系統更新、教育訓練與新功能需求怎麼處理。';
+const stages = [
+  { t: '導入', d: '填需求表、照診所流程調整、舊資料試轉與核對、依角色教育訓練，驗收後才上線。' },
+  { t: '上線陪跑', d: '上線第一個月是重點期，現場遇到的問題優先處理，並依實際使用再微調。' },
+  { t: '日常支援', d: '操作問題、資料更正、報表需求，透過專屬聯絡窗口找我們。' },
+  { t: '持續更新', d: '系統持續改善與修正，更新由我們部署，員工重新整理頁面就是新版本。' },
+];
+const levels = [
+  { lv: '緊急', ex: '整間診所無法登入、無法結帳', time: '收到通報後立即處理' },
+  { lv: '一般', ex: '某個功能操作有問題、資料要更正', time: '1 個工作天內回覆' },
+  { lv: '需求', ex: '想新增報表、調整流程', time: '3 個工作天內回覆評估與時程' },
+];
+const pageFaqs = [
+  { q: '客服時間是什麼時候？', a: '週一到週五 10:00–18:00（國定假日除外）。整間診所無法登入或無法結帳這類緊急狀況，非客服時間也可以通報。' },
+  { q: '要怎麼聯絡客服？', a: '簽約後會提供專屬的聯絡窗口；還沒簽約可以先用預約展示表單留言。' },
+  { q: '新員工到職要再上課嗎？', a: '系統內有各角色的操作說明，新員工可以照著學；需要的話也可以安排線上教學。' },
+  { q: '想加新功能怎麼辦？', a: '先告訴我們需求，我們評估後回覆做法與時程。需求表以外的全新功能另外報價，通常一個工作天可以完成。' },
+];
+---
+<Base title={title} description={description} jsonld={[faqSchema(pageFaqs), breadcrumb([{ name: title, path: '/support' }])]}>
+  <header class="page-head">
+    <div class="wrap">
+      <div class="eyebrow">服務與支援</div>
+      <h1>{title}</h1>
+      <p class="updated">更新：{brand.updated}</p>
+      <p class="answer">從導入、上線到日常使用，GoodLife 好境都有人陪：導入時照診所流程調整，上線第一個月陪跑，之後有專屬聯絡窗口，緊急狀況立即處理。</p>
+    </div>
+  </header>
+
+  <section class="section tight">
+    <div class="wrap">
+      <h2>四個階段</h2>
+      <div class="grid c2">
+        {stages.map((s) => <div class="card"><h3>{s.t}</h3><p>{s.d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <h2>回覆速度</h2>
+      <p class="lead">客服時間：週一到週五 10:00–18:00（國定假日除外）。</p>
+      <div class="grid c3">
+        {levels.map((l) => <div class="card"><h3>{l.lv}：{l.time}</h3><p>例：{l.ex}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <h2>常見問答</h2>
+      <Faq items={pageFaqs} />
+    </div>
+  </section>
+
+  <Cta />
+</Base>
+<style>
+</style>
