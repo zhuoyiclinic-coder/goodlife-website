@@ -6,6 +6,7 @@ import Cta from '../components/Cta.astro';
 import ShotTabs from '../components/ShotTabs.astro';
 import { brand, moneyFlow, features, roles, faqs, custom } from '../data/site';
 import { faqSchema, softwareSchema } from '../data/schema';
+import { clinicTypes } from '../data/details';
 import perfDesktop from '../assets/shots/perf-desktop.png';
 import boardMobile from '../assets/shots/board-mobile.png';
 import receptionMobile from '../assets/shots/reception-mobile.png';
@@ -176,6 +177,14 @@ const pains = [
         {features.map((f) => <a class="card reveal fcard" href={`/features/${f.slug}`}><h3>{f.title}</h3><p>{f.body}</p></a>)}
       </div>
       <p style="margin-top:24px"><a href="/features">看完整功能說明 →</a></p>
+
+      <!-- 業主 2026-11-06：首頁也連到各診所類型頁 -->
+      <div class="eyebrow" style="margin-top:56px">診所類型</div>
+      <h2>適合哪些診所</h2>
+      <div class="grid c3">
+        {clinicTypes.map((c) => <a class="card reveal fcard" href={`/clinics/${c.slug}`}><h3>{c.short}</h3><p>{c.description}</p></a>)}
+      </div>
+      <p style="margin-top:24px"><a href="/clinics">看全部診所類型 →</a></p>
     </div>
   </section>
 

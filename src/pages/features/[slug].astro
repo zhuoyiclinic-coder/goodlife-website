@@ -1,6 +1,6 @@
 ---
 import DetailPage from '../../components/DetailPage.astro';
-import { featureDetails } from '../../data/details';
+import { featureDetails, clinicTypes } from '../../data/details';
 import { articleTitles } from '../../data/learn';
 
 export function getStaticPaths() {
@@ -9,4 +9,5 @@ export function getStaticPaths() {
 const { d } = Astro.props;
 const titles = await articleTitles();
 ---
-<DetailPage d={d} section={{ name: '功能', path: '/features' }} siblings={featureDetails} articleTitle={d.article ? titles[d.article] : undefined} />
+<DetailPage d={d} section={{ name: '功能', path: '/features' }} siblings={featureDetails} articleTitle={d.article ? titles[d.article] : undefined}
+  related={{ name: '適合的診所', path: '/clinics', items: clinicTypes }} />

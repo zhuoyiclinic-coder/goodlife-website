@@ -7,7 +7,7 @@ export function getStaticPaths() {
 }
 const { d } = Astro.props;
 ---
-<DetailPage d={d} section={{ name: '診所類型', path: '/clinics' }} siblings={clinicTypes}>
+<DetailPage d={d} section={{ name: '診所類型', path: '/clinics' }} siblings={clinicTypes} sibsTop>
   <section class="section tight">
     <div class="wrap">
       <h2>常用的功能</h2>
