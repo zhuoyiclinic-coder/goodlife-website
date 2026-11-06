@@ -48,6 +48,15 @@ const jsonld = [breadcrumb([section, { name: d.short, path }]), ...(d.faqs.lengt
     </section>
   )}
 
+  {d.day && d.day.length > 0 && (
+    <section class="section tight">
+      <div class="wrap">
+        <h2>一天怎麼用</h2>
+        <ol class="day">{d.day.map((x) => <li>{x}</li>)}</ol>
+      </div>
+    </section>
+  )}
+
   {d.shots && <Shots items={d.shots} />}
 
   <slot />
@@ -87,4 +96,6 @@ const jsonld = [breadcrumb([section, { name: d.short, path }]), ...(d.faqs.lengt
   .sibs-top { margin-top: 18px; }
   .sibs-label { display: block; font-size: .88rem; color: var(--ink-3); margin-bottom: 8px; }
   .rel-h { margin-top: 28px; }
+  .day { padding-left: 1.4em; display: grid; gap: 10px; color: var(--ink-2); max-width: 46em; }
+  .day li::marker { color: var(--brand); font-weight: 700; }
 </style>

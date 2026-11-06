@@ -9,15 +9,24 @@ import { faqSchema, breadcrumb } from '../data/schema';
 const title = '資安與個資保護';
 const description = 'GoodLife 好境怎麼保護病患個資：每家診所獨立資料庫、連線加密、角色權限逐項設定、重要操作留稽核紀錄。';
 const pageFaqs = faqs.filter((f) => /個資/.test(f.q));
+
 const items = [
   { t: '每家診所獨立資料庫', d: '每家診所使用自己的資料庫與網址，資料不和其他診所放在一起，也不會因為別家的問題受影響。' },
   { t: '連線與儲存都加密', d: '瀏覽器到系統全程 HTTPS 加密，資料庫的儲存也經過加密。' },
   { t: '角色權限逐項設定', d: '老闆、店長、醫師、護理師、諮詢師、美容師、櫃台、會計各有權限。每個功能哪些角色能用，可以在權限表逐項打開或關掉。' },
   { t: '資料庫層級的存取控制', d: '權限不只是畫面上把按鈕藏起來。資料庫本身會檢查登入者的角色，不該看到的資料直接讀不到。' },
-  { t: '重要操作留稽核紀錄', d: '退費、改價、改金額、作廢等操作，都記下是誰、什麼時間、改了什麼，紀錄只能新增、不能修改。' },
+  { t: '重要操作留稽核紀錄', d: '退費、改價、改金額、作廢等操作，都記下是誰、什麼時間、改了什麼，紀錄只能新增、不能修改。' },  // 業主 2026-11-06：資安頁補強（只寫系統做得到的）
+  { t: '病歷只開給醫事人員', d: '病歷類的功能只能開給醫師、護理師；權限表上其他角色的病歷格子是鎖住的，連老闆都不能誤開。' },
+  { t: '匯出客人資料留紀錄', d: '匯出客戶清單時，記下是誰、什麼時候、匯出幾筆、用了什麼篩選條件。' },
+  { t: '離職就停用帳號', d: '員工辦理離職後，帳號就不能再登入使用系統；手上的預約與客人先交接給其他同事。' },
+  { t: '改權限也留紀錄', d: '權限表的每一次調整，都記下誰改的、哪個角色、哪個功能、從什麼改成什麼。' },
+];
+const localFaqs = [
+  { q: '員工可以把客人資料匯出帶走嗎？', a: '只有能打開客戶清單的角色才能匯出，哪些角色能用由權限表決定。匯出時，系統會記下是誰、什麼時候、匯出幾筆，事後查得到。' },
+  { q: '誰看得到病歷？', a: '病歷類的功能只能開給醫師、護理師。其他角色在權限表上無法打開病歷功能。' },
 ];
 ---
-<Base title={title} description={description} jsonld={[faqSchema(pageFaqs), breadcrumb([{ name: title, path: '/security' }])]}>
+<Base title={title} description={description} jsonld={[faqSchema([...pageFaqs, ...localFaqs]), breadcrumb([{ name: title, path: '/security' }])]}>
   <header class="page-head">
     <div class="wrap">
       <div class="eyebrow">資安與個資</div>
@@ -37,7 +46,7 @@ const items = [
   <section class="section tight">
     <div class="wrap">
       <h2>常見問答</h2>
-      <Faq items={pageFaqs} />
+      <Faq items={[...pageFaqs, ...localFaqs]} />
     </div>
   </section>
   <Cta title="想看權限表和稽核紀錄長什麼樣子？" body="預約展示時，可以直接看示範診所的權限設定與稽核紀錄畫面。" />

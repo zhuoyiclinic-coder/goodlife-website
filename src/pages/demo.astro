@@ -25,7 +25,7 @@ const description = '預約 30 分鐘線上展示，用示範診所走一次預�
         <label>手機或 LINE ID<input name="contact" required maxlength="80" /></label>
         <label>想先了解什麼（選填）<textarea name="note" rows="3" maxlength="1000"></textarea></label>
         <label class="hp" aria-hidden="true">網站<input name="website" tabindex="-1" autocomplete="off" /></label>
-        <label class="consent"><input type="checkbox" name="consent" required /> 我同意{brand.company}（GoodLife 好境）使用以上資料聯絡我、安排展示，不會用在其他用途。</label>
+        <label class="consent"><input type="checkbox" name="consent" required /> 我同意{brand.company}（GoodLife 好境）使用以上資料聯絡我、安排展示，不會用在其他用途（<a href="/privacy" target="_blank" rel="noopener">隱私權政策</a>）。</label>
         <button class="btn btn-primary" type="submit">送出預約</button>
         <p class="msg" role="status" aria-live="polite"></p>
       </form>
