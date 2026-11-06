@@ -3,6 +3,6 @@ import ListPage from '../../components/ListPage.astro';
 import { clinicTypes } from '../../data/details';
 ---
 <ListPage title="適合哪些診所" eyebrow="診所類型" path="/clinics"
-  description="GoodLife 適合自費醫美診所、皮膚科自費門診，以及同一間診所有兩個統編的情況。"
+  description="GoodLife 適合自費醫美診所、皮膚科自費門診、抗衰老與預防醫學、物理治療所、植髮診所，以及同一間診所有兩個統編的情況。"
   lead="GoodLife 以自費醫療為主，不處理健保申報。"
   items={clinicTypes.map((c) => ({ href: `/clinics/${c.slug}`, title: c.short, body: c.description }))} />
