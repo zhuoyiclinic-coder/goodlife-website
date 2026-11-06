@@ -9,7 +9,7 @@ export const brand = {
   tagline: '從預約到月結，一套系統跑完整間醫美診所',
   description:
     'GoodLife 好境是給台灣自費醫美診所用的雲端營運系統：預約、報到、諮詢、結帳、電子發票、套票與儲值金、傳票、業績抽成、薪資、庫存與老闆報表，一套跑完。每家診所使用獨立的資料庫。',
-  updated: '2026-11-04',
+  updated: '2026-11-06',
 };
 
 export const nav = [
