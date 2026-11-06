@@ -1,13 +1,15 @@
 ---
 import DetailPage from '../../components/DetailPage.astro';
 import { clinicTypes, featureDetails } from '../../data/details';
+import { articleTitles } from '../../data/learn';
 
 export function getStaticPaths() {
   return clinicTypes.map((d) => ({ params: { slug: d.slug }, props: { d } }));
 }
 const { d } = Astro.props;
+const titles = await articleTitles();
 ---
-<DetailPage d={d} section={{ name: '診所類型', path: '/clinics' }} siblings={clinicTypes} sibsTop>
+<DetailPage d={d} section={{ name: '診所類型', path: '/clinics' }} siblings={clinicTypes} sibsTop articleTitle={d.article ? titles[d.article] : undefined}>
   <section class="section tight">
     <div class="wrap">
       <h2>常用的功能</h2>

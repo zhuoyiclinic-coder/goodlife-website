@@ -278,7 +278,7 @@ export const clinicTypes: Detail[] = [
   },
   // 業主 2026-11-06：再加三種全自費、流程跟醫美相近的診所類型（只寫系統現在做得到的事）
   {
-    slug: 'preventive', short: '抗衰老／預防醫學', title: '抗衰老與預防醫學診所',
+    slug: 'preventive', article: 'drip-lot-expiry', short: '抗衰老／預防醫學', title: '抗衰老與預防醫學診所',
     description: '營養點滴、荷爾蒙、體重管理等自費療程的套票、回診預約、抽成與耗材效期。',
     answer: '做營養點滴、荷爾蒙、體重管理等自費療程的診所，可以用 GoodLife 管理療程套票、回診預約、諮詢師業績抽成，以及點滴、針劑的批號效期。',
     points: [
@@ -293,7 +293,7 @@ export const clinicTypes: Detail[] = [
     ],
   },
   {
-    slug: 'physical-therapy', short: '物理治療所', title: '物理治療所',
+    slug: 'physical-therapy', article: 'physio-packages', short: '物理治療所', title: '物理治療所',
     description: '全自費、預約制的物理治療所：預約、堂數方案、治療師按次計費、排班與薪資。',
     answer: '全自費、預約制的物理治療所，可以用 GoodLife 管理預約、堂數方案、治療師按次計費，以及排班、出勤與薪資。',
     points: [
@@ -308,7 +308,7 @@ export const clinicTypes: Detail[] = [
     ],
   },
   {
-    slug: 'hair-transplant', short: '植髮診所', title: '植髮診所',
+    slug: 'hair-transplant', article: 'surgery-installments', short: '植髮診所', title: '植髮診所',
     description: '高單價、先諮詢再手術的植髮療程：諮詢開單、手術預約、醫師費與諮詢師抽成。',
     answer: '植髮是高單價、要先諮詢再手術的自費療程，GoodLife 可以管理諮詢開單、手術預約、醫師費與諮詢師抽成。',
     points: [
