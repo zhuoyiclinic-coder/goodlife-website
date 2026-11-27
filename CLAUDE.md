@@ -54,10 +54,10 @@ npx astro preview   # 預覽建好的 dist/
 
 ## 上線
 
-- 目前用 Vercel CLI 部署：在專案根目錄 `vercel deploy --prod --yes`。
-  改了 `api/` 底下的函式要加 `--force`，不然會沿用舊函式。
-- ⛔ **只能部署到 Vercel 專案 `goodlife-website`**。同一個 Vercel 團隊裡還有其他正式系統，
-  絕對不可以 link 或部署到它們。`.vercel/project.json` 指的必須是 goodlife-website。
+- **推上 GitHub 的 `main` 就自動上線**（Vercel 專案 goodlife-website 連著 `goodlife-clinic/goodlife-website`），幾分鐘後生效。
+  所以 `npx astro build` 沒過、還沒給業主看過的東西，不要推上 main；要先給業主看，就推到別的分支，Vercel 會給一個預覽網址。
+- 不用、也不要自己跑 `vercel deploy`。真的要手動（例如改了 `api/` 函式但沒更新）才由業主那邊處理。
+- ⛔ 同一個 Vercel 團隊裡還有其他正式系統，絕對不可以 link 或部署到它們。
 - 預約表單 `api/demo.js` 用 Resend 寄信；`RESEND_API_KEY`、`DEMO_TO_EMAIL`、`DEMO_FROM_EMAIL` 在 Vercel 環境變數，
   **不要寫進程式或 repo**，也不要把值印出來。
 - 網域 DNS 在 GoDaddy（A @ → 76.76.21.21，www 轉主網址）。不要動 DNS 的信箱記錄（MX、TXT、`send`、`resend._domainkey`）。
